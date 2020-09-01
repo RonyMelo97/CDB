@@ -54,42 +54,56 @@ document.querySelectorAll('.input-group').forEach(function(inputG) {
 
 document.querySelectorAll('.tabs__tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
-
-        var tabName = this.dataset.tab;
-
-        document.querySelectorAll('.modal__content').forEach(function(content) {
-            if (content.dataset.content == tabName) {
-                content.classList.add('active');
-            } else {
-                content.classList.remove('active');
-            }
-        })
-
-        document.querySelectorAll('.tabs__tab').forEach(function(aTab) {
-            if (aTab.dataset.tab == tabName) {
-                aTab.classList.add('selected');
-            } else {
-                aTab.classList.remove('selected');
-            }
-        })
+        showTab(this.dataset.tab);
     });
 });
 
-function addTab(title, tab, close = false) {
+function showTab(name) {
+    document.querySelectorAll('.modal__content').forEach(function(content) {
+        if (content.dataset.content == name) {
+            content.classList.add('active');
+        } else {
+            content.classList.remove('active');
+        }
+    })
+
+    document.querySelectorAll('.tabs__tab').forEach(function(aTab) {
+        if (aTab.dataset.tab == name) {
+            aTab.classList.add('selected');
+        } else {
+            aTab.classList.remove('selected');
+        }
+    })
+}
+
+function addTab(title, name, close = false) {
     var tabs = document.querySelector('.tabs');
+    var currentTab = document.querySelector('.tabs__tab[data-tab=' + name + ']');
 
-    var tab = document.createElement('li');
-    tab.classList.add('tabs__tab');
-    tab.setAttribute('data-tab', tab);
-    tab.innerText = title;
+    if (!currentTab) {
 
-    if (close) {
-        var closeBtn = document.createElement('button');
+        var tab = document.createElement('li');
+        tab.classList.add('tabs__tab');
+        tab.setAttribute('data-tab', name);
+        tab.innerText = title;
+        tab.addEventListener('click', function() {
+            showTab(name);
+        })
 
-        closeBtn.addEventListener('click', function() {
-            console.log('remove')
-        });
+        /*         if (close) {
+                    var closeBtn = document.createElement('button');
+                    closeBtn.classList.add('tabs__tab__close');
+                    closeBtn.innerText = 'X';
+
+                    closeBtn.addEventListener('click', function() {
+        							document.querySelector('.tabs__tab[data-tab=' + name + ']').remove();
+                    });
+
+                    tab.append(closeBtn);
+                } */
+
+        tabs.append(tab);
+
+        showTab(name);
     }
-
-    tabs.append();
 }

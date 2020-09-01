@@ -3,7 +3,7 @@
         &.active {
             display: block;
         }
-        .forget-password-link {
+        .forgot-password-link {
             margin: 25px 0;
         }
         .register-link {
@@ -15,6 +15,16 @@
         }
     }
     &.register {
+        display: none;
+        &.active {
+            display: block;
+        }
+        .btn-default {
+            margin-top: 25px;
+            width: 100%;
+        }
+    }
+    &.forgot-password {
         display: none;
         &.active {
             display: block;

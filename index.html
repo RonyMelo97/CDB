@@ -36,13 +36,13 @@
 								</button>
             </form>
 
-            <span class="text-default forget-password-link">
-            	<a data-onclick="showTab('forget-password', true)" class="link">Esqueceu a senha?</a>
+            <span class="text-default forgot-password-link">
+            	<a onClick="addTab('Esqueceu a senha?', 'forgot-password', true) " class="link">Esqueceu a senha?</a>
 						</span>
 
             <span class="text-default register-link">
 							Ainda não é cadastrado? 
-							<a data-onclick="showTab('register')" class="link">Cadastre-se</a>
+							<a onClick="showTab('register')" class="link">Cadastre-se</a>
 						</span>
         </div>
 
@@ -75,8 +75,18 @@
             </form>
         </div>
 
-        <div class="modal__content" data-content="forget-password">
+        <div class="modal__content forgot-password" data-content="forgot-password">
+            <form class="forgot-password-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input type="text" class="input-control" placeholder="seu@email.com">
+                </div>
 
+                <button class="btn-default" type="submit">
+								Recuperar
+							</button>
+            </form>
         </div>
     </div>
 

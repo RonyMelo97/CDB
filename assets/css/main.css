@@ -22,6 +22,7 @@
   margin: 15px 0;
   padding: 15px 10px;
   display: flex;
+  align-items: center;
   transition: 0.3s all; }
   .input-group .label-control {
     position: absolute;
@@ -72,7 +73,7 @@
 
 .modal__content.login.active {
   display: block; }
-.modal__content.login .forget-password-link {
+.modal__content.login .forgot-password-link {
   margin: 25px 0; }
 .modal__content.login .register-link {
   margin: 0 0 25px; }
@@ -86,6 +87,13 @@
   .modal__content.register .btn-default {
     margin-top: 25px;
     width: 100%; }
+.modal__content.forgot-password {
+  display: none; }
+  .modal__content.forgot-password.active {
+    display: block; }
+  .modal__content.forgot-password .btn-default {
+    margin-top: 25px;
+    width: 100%; }
 
 .modal, .modal--tabs {
   padding: 35px;
@@ -96,8 +104,7 @@
   background-color: #F1F1F1; }
   .modal__content {
     padding: 17.5px 35px 35px;
-    background-color: white;
-    border-radius: 0 12px 12px 12px; }
+    background-color: white; }
   .modal--tabs {
     padding: 25px; }
     .modal--tabs .modal__content {
@@ -130,6 +137,12 @@
       background-color: white; }
       .tabs__tab.selected:hover::before {
         display: none; }
+    .tabs__tab__close {
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      color: #6FA821;
+      font-weight: bold; }
 
 * {
   box-sizing: border-box; }
