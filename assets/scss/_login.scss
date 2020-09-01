@@ -1,0 +1,27 @@
+.modal__content {
+    &.login {
+        &.active {
+            display: block;
+        }
+        .forget-password-link {
+            margin: 25px 0;
+        }
+        .register-link {
+            margin: 0 0 25px;
+        }
+        .btn-default {
+            margin-top: 25px;
+            width: 100%;
+        }
+    }
+    &.register {
+        display: none;
+        &.active {
+            display: block;
+        }
+        .btn-default {
+            margin-top: 25px;
+            width: 100%;
+        }
+    }
+}

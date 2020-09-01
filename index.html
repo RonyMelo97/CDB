@@ -4,10 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <title>CDB</title>
 </head>
 
 <body>
+    <div class="modal--tabs">
+        <ul class="tabs">
+            <li class="tabs__tab selected" data-tab="login">Login</li>
+            <li class="tabs__tab" data-tab="register">Cadastro</li>
+        </ul>
+
+        <div class="modal__content login active" data-content="login">
+            <form class="login-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <input type="text" class="input-control" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <input type="password" class="input-control" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+									Entrar
+								</button>
+            </form>
+
+            <span class="text-default forget-password-link">
+            	<a data-onclick="showTab('forget-password', true)" class="link">Esqueceu a senha?</a>
+						</span>
+
+            <span class="text-default register-link">
+							Ainda não é cadastrado? 
+							<a data-onclick="showTab('register')" class="link">Cadastre-se</a>
+						</span>
+        </div>
+
+        <div class="modal__content register" data-content="register">
+            <form class="register-form">
+                <div class="input-group">
+                    <label class="label-control">Nome</label>
+                    <input name="name" type="text" class="input-control" placeholder="João da Silva">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <input name="email" type="text" class="input-control" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <input name="password" type="password" class="input-control" placeholder="*******">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Confirme sua senha</label>
+                    <input name="confirm-password" type="password" class="input-control" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+								Registrar
+							</button>
+            </form>
+        </div>
+
+        <div class="modal__content" data-content="forget-password">
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        Este conteúdo se destina à educação sobre drogas e redução de danos para usuários, com a liberdade de expressá-lo amparado pelo Supremo Tribunal Federal no julgamento da ADPF 187
+    </footer>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
 

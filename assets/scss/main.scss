@@ -1,4 +1,8 @@
 @import 'common',
+'form',
+'login',
+'modal',
+'tabs',
 'variables';
 * {
     box-sizing: border-box;
@@ -13,6 +17,6 @@ body {
 
 body {
     font-size: 16px;
-    background-color: #f1f1f1;
+    background-color: $color-bg;
     overflow-x: hidden;
 }

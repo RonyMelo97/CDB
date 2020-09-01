@@ -1,0 +1,21 @@
+@import 'variables';
+.modal {
+    padding: 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-bg;
+    &__content {
+        padding: 17.5px 35px 35px;
+        background-color: white;
+        border-radius: 0 12px 12px 12px;
+    }
+    &--tabs {
+        @extend .modal;
+        padding: 25px;
+        .modal__content {
+            display: none;
+        }
+    }
+}
