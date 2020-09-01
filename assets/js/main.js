@@ -39,7 +39,13 @@ document.querySelectorAll('.input-group').forEach(function(inputG) {
     });
 
     inputControl.addEventListener('blur', function() {
-        inputG.classList.remove('focused');
+        if (inputControl.value == '') {
+            inputG.classList.remove('focused');
+            inputG.classList.remove('floating');
+        } else {
+            inputG.classList.remove('focused');
+            inputG.classList.add('floating');
+        }
     });
 
 });

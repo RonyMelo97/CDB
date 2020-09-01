@@ -5,7 +5,7 @@ Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científic
 ### O que o projeto está usando? ###
 
 * HTML5
-* SASS
+* SCSS
 * JS
 
 ### Como eu rodo o projeto? ###

@@ -5,13 +5,13 @@
     position: relative;
     margin: 15px 0;
     padding: 15px 10px;
-    border-radius: 12px;
+    display: flex;
     transition: 0.3s all;
     .label-control {
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        left: 22.5px;
+        left: 50px;
         color: $color-text;
         transition: 0.3s all;
     }
@@ -55,17 +55,19 @@
         background-color: $color-interactive-bg;
     }
     &.focused {
-        border-radius: 12px 12px 0 0;
         &::after {
             width: 100%;
         }
-        .input-control {
-            transform: translateY(5px);
-        }
+    }
+    &.focused,
+    &.floating {
         .label-control {
             top: 7.5px;
             font-size: rem(12);
             transform: none;
+        }
+        .input-control {
+            transform: translateY(5px);
         }
     }
 }
