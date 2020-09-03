@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
     <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
 </head>
 
@@ -23,12 +24,12 @@
                 <div class="input-group">
                     <label class="label-control">Email</label>
                     <span class="material-icons">email</span>
-                    <input type="text" class="input-control" placeholder="seu@email.com">
+                    <input name="email" type="text" class="input-control" placeholder="seu@email.com">
                 </div>
                 <div class="input-group">
                     <label class="label-control">Senha</label>
                     <span class="material-icons">lock</span>
-                    <input type="password" class="input-control" placeholder="*******">
+                    <input name="password" type="password" class="input-control" placeholder="*******">
                 </div>
 
                 <button class="btn-default" type="submit">
@@ -95,8 +96,10 @@
     </footer>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
 </body>
 
 </html>

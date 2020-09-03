@@ -1,12 +1,12 @@
-@import 'variables',
-'functions';
+@import './utils/variables',
+'./utils/functions';
 .input-group {
     width: 100%;
     position: relative;
     margin: 15px 0;
     padding: 15px 10px;
-		display: flex;
-		align-items: center;
+    display: flex;
+    align-items: center;
     transition: 0.3s all;
     .label-control {
         position: absolute;
@@ -23,7 +23,14 @@
         padding: 7.5px 15px;
         border: none;
         background-color: transparent;
+        font-family: 'Varela', 'Open Sans', sans-serif;
         transition: 0.3s all;
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            box-shadow: 0 0 0 30px white inset;
+        }
         &::placeholder {
             color: transparent;
             transition: 0.5s color;

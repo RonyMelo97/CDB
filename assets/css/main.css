@@ -38,7 +38,10 @@
     padding: 7.5px 15px;
     border: none;
     background-color: transparent;
+    font-family: 'Varela', 'Open Sans', sans-serif;
     transition: 0.3s all; }
+    .input-group .input-control:-webkit-autofill, .input-group .input-control:-webkit-autofill:hover, .input-group .input-control:-webkit-autofill:focus, .input-group .input-control:-webkit-autofill:active {
+      box-shadow: 0 0 0 30px white inset; }
     .input-group .input-control::placeholder {
       color: transparent;
       transition: 0.5s color; }

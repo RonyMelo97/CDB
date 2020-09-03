@@ -1,6 +1,7 @@
-// Firebase config
+import Firebase from './firebase.js';
 
-var firebaseConfig = {
+// Connection
+const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
     authDomain: "cannabisdb-4843e.firebaseapp.com",
     databaseURL: "https://cannabisdb-4843e.firebaseio.com",
@@ -11,78 +12,68 @@ var firebaseConfig = {
     measurementId: "G-5RF95DX7F1"
 };
 
-// Firebase init
+const fb = new Firebase(config);
 
-firebase.initializeApp(firebaseConfig);
-
-// Firebase auth
-
-// firebase.auth().createUserWithEmailAndPassword('teste@teste.com', 'password').then(function(user) {
-//     console.log('Usuário criado', user);
-// }).catch(function(error) {
-//     console.log('Erro:' + error.code + ' - ' + error.message);
-// })
 
 // Input Events
+for (let group of document.querySelectorAll('.input-group')) {
 
-document.querySelectorAll('.input-group').forEach(function(inputG) {
+    const inputControl = group.querySelector('.input-control');
+    const labelControl = group.querySelector('.label-control');
 
-    var inputControl = inputG.querySelector('.input-control');
-    var labelControl = inputG.querySelector('.label-control');
-
-    labelControl.addEventListener('click', function() {
+    labelControl.addEventListener('click', () => {
         inputControl.focus();
-    })
-
-    inputControl.addEventListener('focus', function() {
-        inputG.classList.add('focused');
     });
 
-    inputControl.addEventListener('blur', function() {
+    inputControl.addEventListener('focus', () => {
+        group.classList.add('focused');
+    });
+
+    inputControl.addEventListener('blur', () => {
         if (inputControl.value == '') {
-            inputG.classList.remove('focused');
-            inputG.classList.remove('floating');
+            group.classList.remove('focused');
+            group.classList.remove('floating');
         } else {
-            inputG.classList.remove('focused');
-            inputG.classList.add('floating');
+            group.classList.remove('focused');
+            group.classList.add('floating');
         }
     });
 
-});
+};
 
 // Tabs Events
 
-document.querySelectorAll('.tabs__tab').forEach(function(tab) {
+for (let tab of document.querySelectorAll('.tabs__tab')) {
     tab.addEventListener('click', function() {
         showTab(this.dataset.tab);
     });
-});
+};
 
 function showTab(name) {
-    document.querySelectorAll('.modal__content').forEach(function(content) {
+    for (let content of document.querySelectorAll('.modal__content')) {
         if (content.dataset.content == name) {
             content.classList.add('active');
         } else {
             content.classList.remove('active');
         }
-    })
+    }
 
-    document.querySelectorAll('.tabs__tab').forEach(function(aTab) {
-        if (aTab.dataset.tab == name) {
-            aTab.classList.add('selected');
+    for (let tab of document.querySelectorAll('.tabs__tab')) {
+        if (tab.dataset.tab == name) {
+            tab.classList.add('selected');
         } else {
-            aTab.classList.remove('selected');
+            tab.classList.remove('selected');
         }
-    })
+    }
 }
 
 function addTab(title, name, close = false) {
-    var tabs = document.querySelector('.tabs');
-    var currentTab = document.querySelector('.tabs__tab[data-tab=' + name + ']');
+    const tabs = document.querySelector('.tabs');
+    const currentTab = document.querySelector('.tabs__tab[data-tab=' + name + ']');
 
     if (!currentTab) {
 
-        var tab = document.createElement('li');
+        const tab = document.createElement('li');
         tab.classList.add('tabs__tab');
         tab.setAttribute('data-tab', name);
         tab.innerText = title;
@@ -91,7 +82,7 @@ function addTab(title, name, close = false) {
         })
 
         /*         if (close) {
-                    var closeBtn = document.createElement('button');
+                    const closeBtn = document.createElement('button');
                     closeBtn.classList.add('tabs__tab__close');
                     closeBtn.innerText = 'X';
 
@@ -107,3 +98,32 @@ function addTab(title, name, close = false) {
         showTab(name);
     }
 }
+
+// Login Form
+
+document.querySelector('.login-form').addEventListener('submit', function(ev) {
+    ev.preventDefault();
+
+    const email = this.querySelector('input[name="email"]').value;
+    const password = this.querySelector('input[name="password"]').value;
+
+    if (email == '' || password == '') {
+        alert('Preencha todos os campos');
+    } else {
+        fb.user.login(email, password);
+    }
+
+});
+
+// Register Form
+
+document.querySelector('.register-form').addEventListener('submit', ev => {
+    ev.preventDefault();
+
+    if (name == '' && email == '' && password == '' && confirmPassword == '') {
+        alert('Preencha todos os campos');
+    } else {
+        fb.user.register(email, password);
+    }
+
+});
