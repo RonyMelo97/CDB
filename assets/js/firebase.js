@@ -4,8 +4,6 @@ export default function Firebase(config) {
 
     firebase.initializeApp(config);
 
-    const toast = new Toaster();
-
     function handleError(code) {
         let message;
 
@@ -28,6 +26,8 @@ export default function Firebase(config) {
 
         return message;
     }
+
+    const toast = new Toaster();
 
     this.user = {
 
