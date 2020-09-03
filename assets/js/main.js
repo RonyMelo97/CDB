@@ -12,8 +12,16 @@ const config = {
     measurementId: "G-5RF95DX7F1"
 };
 
+
+
+
 const fb = new Firebase(config);
 
+// fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
+//     return data.json();
+// }).then(function(data) {
+//     console.log(data)
+// })
 
 // Input Events
 for (let group of document.querySelectorAll('.input-group')) {
@@ -117,8 +125,13 @@ document.querySelector('.login-form').addEventListener('submit', function(ev) {
 
 // Register Form
 
-document.querySelector('.register-form').addEventListener('submit', ev => {
+document.querySelector('.register-form').addEventListener('submit', function(ev) {
     ev.preventDefault();
+
+    const name = this.querySelector('input[name="name"]').value;
+    const email = this.querySelector('input[name="email"]').value;
+    const password = this.querySelector('input[name="password"]').value;
+    const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
 
     if (name == '' && email == '' && password == '' && confirmPassword == '') {
         alert('Preencha todos os campos');

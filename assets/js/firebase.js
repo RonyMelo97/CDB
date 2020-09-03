@@ -1,4 +1,5 @@
 import Toaster from './toaster.js';
+import Ajax from './ajax.js';
 
 export default function Firebase(config) {
 
@@ -27,14 +28,27 @@ export default function Firebase(config) {
         return message;
     }
 
+    function refreshToken(token) {
+        const payload = {
+            grant_type: "refresh_token",
+            refresh_token: token
+        }
+
+        return ajax.post('https://securetoken.googleapis.com/v1/token?key=AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o', payload).then(function(data) {
+            console.log(data);
+            return data.id_token;
+        });
+    }
+
     const toast = new Toaster();
+    const ajax = new Ajax();
 
     this.user = {
 
         register: (email, password) => {
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
 
-                toast.show('success', 'Usuário logado');
+                toast.show('success', 'Usuário registrado com sucesso!');
 
             }).catch(function(error) {
 
@@ -43,9 +57,9 @@ export default function Firebase(config) {
             })
         },
         login: (email, password) => {
-            firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+            firebase.auth().signInWithEmailAndPassword(email, password).then(data => {
 
-                toast.show('success', 'Usuário logado');
+                toast.show('success', 'Usuário logado com sucesso!');
 
             }).catch(function(error) {
 
@@ -54,4 +68,5 @@ export default function Firebase(config) {
             })
         }
     };
+
 }

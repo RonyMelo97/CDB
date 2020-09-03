@@ -4,15 +4,18 @@ export default function Posts() {
 
     const ajax = new Ajax();
 
-    ajax.get('https://viacep.com.br/ws/01001000/json/').then((data) => {
+    return ajax.get('https://cannabisdb-4843e.firebaseio.com/posts.json').then(data => {
 
         const template = document.querySelector("[data-template='posts']").innerHTML;
-
         const donkey = Handlebars.compile(template);
 
-        const compiled = donkey(data);
-        document.querySelector('.posts-list').innerHTML = compiled;
+        const handleData = {
+            posts: data
+        };
 
+        const compiled = donkey(handleData);
+
+        document.querySelector('.posts-list').innerHTML = compiled;
     });
 
 }

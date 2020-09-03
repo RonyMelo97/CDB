@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <link href="./assets/css/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
@@ -16,7 +15,9 @@
 
 <body>
     <script data-template="posts" type="text/x-handlebars-template">
-        <span>{{bairro}}</span>
+        {{#each posts}}
+        <h1>{{title}}</h1>
+        <span>{{post}}</span> {{/each}}
     </script>
 
     <div class="posts-list"></div>
