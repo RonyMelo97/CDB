@@ -24,7 +24,7 @@ sass --watch ./asssets/scss/main.scss:./assets/css/main.css
 Por que precisamos dessa extensão?
 
 A extensão cria um servidor client side rodando a pasta que vc selecionou como raiz desse servidor.
-Alguns dos novos recursos que atualizamos precisa de uma estrutura de servidor para funcionar.
+Precisamos de um servidor pois rodamos o protocolo HTTP.
 
 -- Uma alternativa a extensão seria termos o nosso próprio servidor. --
 
