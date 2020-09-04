@@ -9,6 +9,7 @@ const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 
 const path = {
+    root: './',
     css: {
         input: './assets/src/scss/**/*.scss',
         output: './assets/dist/css/'
@@ -20,18 +21,22 @@ const path = {
 }
 
 function scss() {
-    src(path.css.input)
+    return src(path.css.input)
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(cssmin())
         .pipe(sourcemaps.write('.'))
-
-    .pipe(dest(path.css.output))
+        .pipe(dest(path.css.output))
 }
 
 function js() {
     return src(path.js.input)
+        // .pipe(babel({
+        //     presets: [
+        //         '@babel/env'
+        //     ]
+        // }))
         .pipe(dest(path.js.output))
 }
 
@@ -40,7 +45,8 @@ function browserSync() {
         server: {
             baseDir: './'
         },
-        notify: true
+        notify: true,
+        reloadOnRestart: true
     });
 }
 
@@ -50,15 +56,16 @@ function browserReload() {
 }
 
 function watchFiles() {
-    watch(path.css.output, parallel(scss))
+    watch(path.css.input, parallel(scss))
         .on('change', browserReload());
 
-    watch(path.js.output, parallel(js))
-        .on('change', browserReload());;
+    watch(path.js.input, parallel(js))
+        .on('change', browserReload());
+
+    watch(path.root + '**/*.html').on('change', browserReload());
 }
 
 const watching = parallel(scss, js, watchFiles, browserSync);
 
-exports.js = js;
-exports.css = scss;
+exports.server = browserSync;
 exports.default = watching;
