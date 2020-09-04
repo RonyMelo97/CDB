@@ -1,0 +1,31 @@
+{
+  "name": "cdb",
+  "version": "1.0.0",
+  "description": "Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científica.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://GabrielMoodlight@bitbucket.org/GabrielMoodlight/cdb.git"
+  },
+  "author": "Gabriel Moodlight",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/GabrielMoodlight/cdb#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "browser-sync": "^2.26.12",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.1.0"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^2.6.5"
+  }
+}

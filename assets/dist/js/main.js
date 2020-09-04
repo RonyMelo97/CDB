@@ -12,9 +12,6 @@ const config = {
     measurementId: "G-5RF95DX7F1"
 };
 
-
-
-
 const fb = new Firebase(config);
 
 // fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
@@ -23,7 +20,7 @@ const fb = new Firebase(config);
 //     console.log(data)
 // })
 
-// Input Events
+// Input Events 
 for (let group of document.querySelectorAll('.input-group')) {
 
     const inputControl = group.querySelector('.input-control');

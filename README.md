@@ -8,25 +8,29 @@ Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científic
 * SCSS
 * ES6
 * Handlebars
+* Gulp
 
 ### Como eu rodo o projeto? ###
 
 * Clone o repositório
-* Tenha o NPM instalado na sua máquina
-* Instale o sass globalmente executando o seguinte comando no terminal: npm install sass -g
-* Ainda no terminal, navegue até a pasta do projeto e execute o sass para ficar assistindo alterações no scss e jogar pro css:
-sass --watch ./asssets/scss/main.scss:./assets/css/main.css
+* Tenha o NPM instalado na sua máquina. Caso não tenha, [veja como instalar](https://balta.io/blog/node-npm-instalacao-configuracao-e-primeiros-passos)
+* Com o NPM instalado, navegue até a pasta do projeto e execute npm install para instalar as dependências
+* Quando a instalação for finalizada, execute o comando "gulp" para rodar o projeto
 
-* Baixe a extensão Web Server for Chrome
-* No botão "Choose Folder", selecione a pasta que está o projeto
-* Troque a porta para qual preferir ou deixe a padrão e inicie o server
+## Desenvolvimento ##
 
-Por que precisamos dessa extensão?
+Para desenvolver basta rodar o projeto e fazer as modificações dentro da pasta src
 
-A extensão cria um servidor client side rodando a pasta que vc selecionou como raiz desse servidor.
-Precisamos de um servidor pois rodamos o protocolo HTTP.
+### Gulp ###
 
--- Uma alternativa a extensão seria termos o nosso próprio servidor. --
+O Gulp é um automatizador de tarefas. Ele torna tarefas que deveríamos fazer toda hora em processos automatizados e garante a produtividade.
+Neste projeto, estamos automatizando:
+
+gulp-sass - Assiste e transpila os arquivos SCSS para CSS
+gulp-autoprefixer - Coloca os prefixos -webkit- e afins no CSS
+gulp-cssmin - Minifica o CSS para melhorar o carregamento
+gulp-minify - Minifica o JS para melhorar o carregamento
+browser-sync - Atualiza a página quando há alterações em qualquer arquivo
 
 ### Dúvidas e Sugestões? ###
 
