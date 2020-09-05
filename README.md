@@ -14,7 +14,7 @@ Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científic
 
 * Clone o repositório
 * Tenha o NPM instalado na sua máquina. Caso não tenha, [veja como instalar](https://balta.io/blog/node-npm-instalacao-configuracao-e-primeiros-passos)
-* Com o NPM instalado, navegue até a pasta do projeto e execute npm install para instalar as dependências
+* Com o NPM instalado, navegue até a pasta do projeto e execute "npm install" para instalar as dependências
 * Quando a instalação for finalizada, execute o comando "gulp" para rodar o projeto
 
 ## Desenvolvimento ##
@@ -30,9 +30,19 @@ gulp-sass - Assiste e transpila os arquivos SCSS para CSS
 gulp-sourcemaps - Cria o CSS.map com base no nosso SCSS
 gulp-autoprefixer - Coloca os prefixos -webkit- e afins no CSS
 gulp-cssmin - Minifica o CSS para melhorar o carregamento
-gulp-minify - Minifica o JS para melhorar o carregamento
 browser-sync - Atualiza a página quando há alterações em qualquer arquivo
 
-### Dúvidas e Sugestões? ###
+## Vídeos ##
+
+* [Como rodar e desenvolver no projeto](https://screenrec.com/share/WYxcgqCdSE)
+* [ES6: O que é e como está estruturado](https://screenrec.com/share/s8XufLIHK5)
+* [Diferenças entre JS e ES6](https://screenrec.com/share/2TDweGjcSK)
+* [Handlebars: O que é e como está estruturado](https://screenrec.com/share/seqFOSDMaP)
+* [Gulp: O que é e quais tarefas estão automatizadas](https://screenrec.com/share/X9bI4V5RWf)
+* [Gulp: Estrutura do gulpfile.js](https://screenrec.com/share/dPvCD5o7ju)
+* [Gulp: Nossas tarefas](https://screenrec.com/share/V9z8vEN0Ij)
+* [Firebase: Nosso banco de dados](https://screenrec.com/share/UeES2giZXQ)
+
+## Dúvidas e Sugestões? ##
 
 Gabriel Vieira dos Santos - faculdade@gabrieldeveloper.com

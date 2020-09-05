@@ -68,5 +68,4 @@ function watchFiles() {
 
 const watching = parallel(scss, js, watchFiles, browserSync);
 
-exports.server = browserSync;
 exports.default = watching;
