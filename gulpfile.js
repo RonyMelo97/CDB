@@ -1,10 +1,11 @@
-const { src, dest, parallel, series, watch } = require('gulp');
+const { src, dest, parallel, watch } = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
 const minify = require('gulp-minify');
 const sourcemaps = require('gulp-sourcemaps');
 const bs = require('browser-sync');
+
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 

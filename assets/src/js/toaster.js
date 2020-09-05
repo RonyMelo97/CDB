@@ -1,7 +1,5 @@
 export default function Toaster() {
-
-}
-
-Toaster.prototype.show = (type, message) => {
-    toastr[type](message);
+    this.show = (type, message) => {
+        toastr[type](message);
+    }
 }

@@ -2,7 +2,7 @@
 
 Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científica.
 
-### O que o projeto está usando? ###
+## O que o projeto está usando? ##
 
 * HTML5
 * SCSS
@@ -10,7 +10,7 @@ Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científic
 * Handlebars
 * Gulp
 
-### Como eu rodo o projeto? ###
+## Como eu rodo o projeto? ##
 
 * Clone o repositório
 * Tenha o NPM instalado na sua máquina. Caso não tenha, [veja como instalar](https://balta.io/blog/node-npm-instalacao-configuracao-e-primeiros-passos)
@@ -21,12 +21,13 @@ Esse projeto tem como objetivo informatizar sobre a Cannabis de forma científic
 
 Para desenvolver basta rodar o projeto e fazer as modificações dentro da pasta src
 
-### Gulp ###
+## Gulp ##
 
 O Gulp é um automatizador de tarefas. Ele torna tarefas que deveríamos fazer toda hora em processos automatizados e garante a produtividade.
 Neste projeto, estamos automatizando:
 
 gulp-sass - Assiste e transpila os arquivos SCSS para CSS
+gulp-sourcemaps - Cria o CSS.map com base no nosso SCSS
 gulp-autoprefixer - Coloca os prefixos -webkit- e afins no CSS
 gulp-cssmin - Minifica o CSS para melhorar o carregamento
 gulp-minify - Minifica o JS para melhorar o carregamento
@@ -34,4 +35,4 @@ browser-sync - Atualiza a página quando há alterações em qualquer arquivo
 
 ### Dúvidas e Sugestões? ###
 
-* Gabriel Vieira dos Santos - faculdade@gabrieldeveloper.com
+Gabriel Vieira dos Santos - faculdade@gabrieldeveloper.com
