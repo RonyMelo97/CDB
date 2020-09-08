@@ -4,14 +4,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="./assets/dist/css/main.css" rel="stylesheet">
+    <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
 </head>
 
 <body>
+    <div class="modal--tabs">
+        <ul class="tabs">
+            <li class="tabs__tab selected" data-tab="login">Login</li>
+            <li class="tabs__tab" data-tab="register">Cadastro</li>
+        </ul>
+
+        <div class="modal__content login active" data-content="login">
+            <form class="login-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input name="email" type="text" class="input-control" autocomplete="email" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+									Entrar
+								</button>
+            </form>
+
+            <span class="text-default forgot-password-link">
+            	<a onClick="addTab('Esqueceu a senha?', 'forgot-password', true) " class="link">Esqueceu a senha?</a>
+						</span>
+
+            <span class="text-default register-link">
+							Ainda não é cadastrado? 
+							<a onClick="showTab('register')" class="link">Cadastre-se</a>
+						</span>
+        </div>
+
+        <div class="modal__content register" data-content="register">
+            <form class="register-form">
+                <div class="input-group">
+                    <label class="label-control">Nome</label>
+                    <span class="material-icons">person</span>
+                    <input name="name" type="text" class="input-control" autocomplete="name" placeholder="João da Silva">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input name="email" type="text" class="input-control" autocomplete="email" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Confirme sua senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="confirm-password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+								Registrar
+							</button>
+            </form>
+        </div>
+
+        <div class="modal__content forgot-password" data-content="forgot-password">
+            <form class="forgot-password-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input type="text" class="input-control" placeholder="seu@email.com">
+                </div>
+
+                <button class="btn-default" type="submit">
+								Recuperar
+							</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        Este conteúdo se destina à educação sobre drogas e redução de danos para usuários, com a liberdade de expressá-lo amparado pelo Supremo Tribunal Federal no julgamento da ADPF 187
+    </footer>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/dist/js/main.js"></script>
 </body>
 
 </html>

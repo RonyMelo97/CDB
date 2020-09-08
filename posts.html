@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
+</head>
+
+<body>
+    <script data-template="posts" type="text/x-handlebars-template">
+        {{#each posts}}
+        <h1>{{title}}</h1>
+        <span>{{post}}</span> {{/each}}
+    </script>
+
+    <div class="posts-list"></div>
+
+    <script type="module">
+        import Posts from './assets/dist/js/template/posts.js'; const posts = new Posts();
+    </script>
+</body>
+
+</html>

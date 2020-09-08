@@ -1,0 +1,21 @@
+@import './utils/variables';
+.text-default {
+    color: $color-text;
+    display: block;
+}
+
+.link,
+.link:active,
+.link:visited {
+    color: $color-primary;
+    cursor: pointer;
+}
+
+.btn-default {
+    background-color: $color-primary;
+    border: none;
+    padding: 12px 24px;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
