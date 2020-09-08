@@ -42,6 +42,10 @@ browser-sync - Atualiza a página quando há alterações em qualquer arquivo
 * [Gulp: Estrutura do gulpfile.js](https://screenrec.com/share/dPvCD5o7ju)
 * [Gulp: Nossas tarefas](https://screenrec.com/share/V9z8vEN0Ij)
 * [Firebase: Nosso banco de dados](https://screenrec.com/share/UeES2giZXQ)
+* [NPM: ](https://screenrec.com/share/1RdVotIxTM)
+* [Dicas do GIT - Parte 1: ](https://screenrec.com/share/QrYfDkgtoI)
+* [Dicas do GIT - Parte 2: ](https://screenrec.com/share/4N6SIB2ZMU)
+* [Gitflow: ](https://screenrec.com/share/phFRqL0eQK)
 
 ## Dúvidas e Sugestões? ##
 
