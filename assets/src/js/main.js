@@ -1,4 +1,14 @@
 import Firebase from './firebase.js';
+//images carousel
+$('.carousel').slick({
+    infinite:true,
+    slidesToshow:1,
+    dots:false,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 5000,
+});
+
 
 // Connection
 const config = {

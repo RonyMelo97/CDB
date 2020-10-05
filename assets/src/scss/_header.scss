@@ -6,55 +6,129 @@
         display: flex;
         align-items:flex-start;
         justify-content:flex-end;
-        background-image:url("/assets/img/bg.jpg");
         width: 100%;
         height:500px;
-        &__list{
-            display: flex;
-            align-items: center;
-            width: 600px;
-            margin-right: 5%;
-            &__items{
+        position: relative;
+        z-index: 1;
+    }
+    &__list{
+        display: flex;
+        align-items: center;
+        width: 600px;
+        margin-right: 5%;
+        cursor: pointer;
+    }
+    &__items{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        color:$color-bg;
+    }
+    &__items--hover{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+        
+            &:hover .header__items--submenu{
                 display: flex;
-                justify-content: space-evenly;
-                width: 100%;
-                color:$color-bg;
-                &__arrow-down{
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-                    margin-right: 30px;
-                    margin-top: 3px;
-                }
-                &__search{
-                    display: flex;
-                    height: 40px;
-                    width: 200px;
-                    border-radius: 25px;
-                    border: 2px solid $color-bg;
-                    padding-left:5%;
-                    color:$color-bg;
-                    background-color:transparent;
-                    outline: none;
-                    transition: 0.3s;
-                    &::placeholder{
-                        color:$color-bg;
-                    }
-                    &:focus{
-                        width: 220px;
-                    }
-                }
-                &__btn-default--size{
-                    display: flex;
-                    align-items:center;
-                    justify-content:center;
-                    width: 80px;
-                    height: 35px;
-                    &:hover{
-                        opacity: 0.9;
-                    }
-                }
             }
+    }
+    &__list--submenu{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        right:10px;
+        top: 20px;
+    }
+    &__items--submenu{
+        background-color:$color-primary;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 40px;
+        transition: 0.3s;
+        cursor: pointer;
+            &:hover{
+                background-color:$color-interactive-bg;
+                color:$color-primary;
+                
+            }
+    }
+    &__arrow-down{
+        position: absolute;
+        right:15px;
+        bottom: 2px;
+        
+    
+    }
+    &__search{
+        display: flex;
+        height: 40px;
+        width: 200px;
+        border-radius: 25px;
+        border: 2px solid $color-bg;
+        padding-left:5%;
+        color:$color-bg;
+        background-color:transparent;
+        outline: none;
+        transition: 0.3s;
+        &::placeholder{
+            color:$color-bg;
+        }
+        &:focus{
+            width: 220px;
         }
     }
+    &__link-btn{
+        text-decoration: none;
+    }
+    &__btn-default--size{
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        width: 80px;
+        height: 35px;
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+    .carousel{
+        width: 100%;
+        height:500px;
+        position: absolute !important;
+        right: 0;
+        top: 0;
+        z-index: 0;
+            &__images{
+                width: 100%;
+                height: 500px!important;
+                background-size: cover;
+                background-position: center center;
+                box-shadow:inset 0 0 1000em black;
+
+        }
+        &__tittle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color:$color-bg;
+            background-color: rgba(0,0,0,0.3);
+            margin-top: 0;
+        }
+        .slick-prev{
+            left: 35px!important;
+            z-index: 1;
+        }
+        .slick-next{
+            right:35px!important;
+            z-index: 1;
+        }  
+    } 
+     background-image: url(/assets/img/bg.jpg);
+    
 }
+

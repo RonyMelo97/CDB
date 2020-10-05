@@ -8,38 +8,54 @@
         <link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-        <link href="./assets/dist/css/main.css" rel="stylesheet">
+        
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.css" rel="stylesheet">
+        <link href="./assets/dist/css/main.css" rel="stylesheet">
         <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
     </head>
 </head>
 <body>
     <header class="header">
         <nav class="header__nav container">
-            <ul class="header__nav__list">
-                <li class="header__nav__list__items" >Temas<span class="fas fa-chevron-down header__nav__list__items__arrow-down">
-                    <ul>
-                        <li>teste</li>
-                        <li>teste</li>
-                        <li>teste</li>
+            <ul class="header__list">
+                <li class="header__items header__items--hover">Temas
+                    <span class="fas fa-chevron-down header__arrow-down"></span>
+                    <ul class="header__list--submenu">
+                        <li class="header__items--submenu">teste1</li>
+                        <li class="header__items--submenu">teste2</li>
+                        <li class="header__items--submenu">teste3</li>
                     </ul>
                 </li>
-                <li class="header__nav__list__items">Sobre nós</li>
-                <li  class="header__nav__list__items">
-                    <input class="header__nav__list__items__search" placeholder="Busque aqui..." type="text" name="name" id="">
+                <li class="header__items">Sobre nós</li>
+                <li  class="header__items">
+                    <input class="header__search" placeholder="Busque aqui..." type="text" name="name" id="">
                 </li>
-                <li  class="header__nav__list__items">
-                    <a href="index.html">
-                        <div class="btn-default header__nav__list__items__btn-default--size">Entrar</div>
+                <li  class="header__items">
+                    <a class="header__link-btn" href="index.html">
+                        <div class="btn-default header__btn-default--size">Entrar</div>
                     </a>
                 </li>
             </ul>
         </nav>
-    </header>
+        <div class="carousel">
+            <div class="carousel__images" style="background-image: url(/assets/img/bg.jpg)"><h1 class="carousel__tittle">Cannabis DB</h1></div>
+            <div class="carousel__images" style="background-image: url(/assets/img/slide1.jpg)"><h1 class="carousel__tittle">Name Categoria</h1></div>
+            <div class="carousel__images" style="background-image: url(/assets/img/slide2.jpg)"><h1 class="carousel__tittle">Name Postagem</h1></div>
+        </div>    
+    </header>   
+
     <footer class="footer">
         Este conteúdo se destina à educação sobre drogas e redução de danos para usuários, com a liberdade de expressá-lo amparado pelo Supremo Tribunal Federal no julgamento da ADPF 187
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
+    
+    <!---   -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script type="module" src="./assets/dist/js/main.js"></script>
+    
 </body>
 </html>
