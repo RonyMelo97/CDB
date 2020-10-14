@@ -6,41 +6,55 @@
         flex-direction: column;
     }
 }
-.cards{
+.illustration-cdb{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    background-color: $color-primary;
+    background-image: $color-gradient-bg;
+    height: 450px;
     align-items: center;
-        .title--cards{
-            border-bottom: solid 2px;
-    }
-    .container--cards{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        width: 100%;
-        height: auto;
-    }
-    &__box-card{
-        display: flex;
-        align-items: flex-end;
-        width: 22%;
-        height:250px;
-        margin: 20px 0;
-        background-image: url(/assets/img/bg.jpg);
-        background-size: cover;
-
-    }
-    &__preview-text{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color:#ffffff;
-        width: 100%;
-        height: 30%;
-
-
+    justify-content: flex-start;
+    display: flex;
+        .container--column{
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            background-image: url(/assets/img/cbd-formol.png);
+            background-repeat: no-repeat;
+            background-position: right;
+            background-size: 50%;
+        }
+        @media only screen and(min-width: 1080px){
+            .container--column{
+                background-size: 40%;
+                height: 100%;
+            }
+        }
+        @media only screen and(max-width: 500px){
+            .container--column{
+                justify-content: flex-start;
+                background-position-y: 200px;
+                height: 100%;
+                background-size: 100%;
+                background-position: 100% 90%;
+            }
+        }
+        .title--white{
+            color: $color-bg;   
+        }
+        &__text{
+            color: $color-bg;
+            width: 50%;
+        }
+        @media only screen and(max-width: 500px){
+            &__text{
+                width: 100%;
+            }
+        }
+}
+@media only screen and(max-width: 500px){
+    .illustration-cdb{
+        height: 430px;
+        align-items: flex-start;
     }
 }

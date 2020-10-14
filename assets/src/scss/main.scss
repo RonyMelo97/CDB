@@ -4,7 +4,9 @@
 'modal',
 'tabs',
 'header',
-'about-us';
+'about-us',
+'footer',
+'kards';
 * {
     box-sizing: border-box;
 }
@@ -21,4 +23,25 @@ body {
     background-color: $color-bg;
     overflow-x: hidden;
     font-family: 'Varela', 'Open Sans', sans-serif;
+}
+@media only screen and(max-width: 900px){
+    body{
+        font-size:14px;
+    }
+}
+@media only screen and(max-width: 500px){
+    body{
+        font-size:12px;
+    }
+}
+.title{
+    color:$color-title;
+    font-weight: 400;
+    font-size: 2em;
+}
+
+.text{
+    color:$color-text;
+    font-weight: 400;
+    font-size: 1.125rem;
 }

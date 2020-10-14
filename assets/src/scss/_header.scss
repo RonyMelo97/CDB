@@ -54,7 +54,6 @@
             &:hover{
                 background-color:$color-interactive-bg;
                 color:$color-primary;
-                
             }
     }
     &__arrow-down{
@@ -80,6 +79,7 @@
         }
         &:focus{
             width: 220px;
+            border-color: $color-primary;
         }
     }
     &__link-btn{
