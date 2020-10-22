@@ -19,16 +19,23 @@
 <body>
     <header class="header">
         <nav class="header__nav container">
+            <div class="hamburger-menu">
+                <input type="checkbox" id="checkbox-menu">
+                <label for="checkbox-menu">
+                    <span class="hamburger-menu__bars"></span>
+                    <span class="hamburger-menu__bars"></span>
+                    <span class="hamburger-menu__bars"></span>
+                </label>
+            </div>
             <ul class="header__list">
-                <li class="header__items header__items--hover">Temas
-                    <span class="fas fa-chevron-down header__arrow-down"></span>
+                <li class="header__items header__items--hover">Temas<span class="fas fa-chevron-down header__arrow-down"></span>
                     <ul class="header__list--submenu">
                         <li class="header__items--submenu">teste1</li>
                         <li class="header__items--submenu">teste2</li>
                         <li class="header__items--submenu">teste3</li>
                     </ul>
                 </li>
-                <li class="header__items">Sobre nós</li>
+                <li class="header__items"> <a href="#header__anchor">Sobre nós</a></li>
                 <li  class="header__items">
                     <input class="header__search" placeholder="Busque aqui..." type="text" name="name" id="">
                 </li>
@@ -49,13 +56,17 @@
 
     <article class="about-us container">
         <div class="about-us__box-text">
-            <h2 class="title">Um pouco sobre nós</h2>
+            <h2 class="title" id="header__anchor">Um pouco sobre nós</h2>
             <p class="text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore, id saepe obcaecati deserunt repellat sunt. Nemo velit quisquam numquam vel reprehenderit, nam praesentium alias ratione inventore, sed repellendus odit nisi?
             Perspiciatis velit excepturi reprehenderit modi soluta dignissimos ad voluptas dolore, amet repellat natus tempora tempore odio rem, quaerat, maiores aperiam minima commodi placeat! Necessitatibus laborum, provident sint quaerat optio libero.
             Consectetur, similique harum. Eos voluptatibus assumenda sint ullam placeat quibusdam neque, deserunt ex a. Aut ab, necessitatibus harum natus quas cumque deleniti debitis animi alias. Voluptas eligendi sunt deleniti numquam. </p>
         </div>
         <div class="cards">
-            <h2 class="title title--cards">Últimas postagens</h2>
+            <h2 class="title title--cards">
+                Últimas postagens
+                <hr class="title--cards__line-title">
+            </h2>
+            
             <div class="container container--cards">
                 <a href="#" class="cards__box-card">
                     <div class="cards__preview-text"><p>bagulho doido meno ve se fica bom esse treco aqui, enche texto nessa peste</p></div>

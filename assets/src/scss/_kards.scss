@@ -4,8 +4,16 @@
     flex-direction: column;
     align-items: center;
         .title--cards{
-            border-bottom: solid 2px;
+            margin-bottom:0px;
+            &__line-title{
+                width: 80%;
+                height: 2px;
+                background-color: black;
+                border-radius: 30px;
+                border: none;
+            }
     }
+    
     .container--cards{
         display: flex;
         flex-direction: row;

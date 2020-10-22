@@ -8,8 +8,12 @@ $('.carousel').slick({
     autoplay: true,
     autoplaySpeed: 5000,
 });
-
-
+//Responsive menu
+var checkbox = document.querySelector('#checkbox-menu');
+    checkbox.addEventListener ("click",function(event){
+        var header__list = document.querySelector('.header__list')
+        header__list.classList.toggle("open-menu")
+    });
 // Connection
 const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
