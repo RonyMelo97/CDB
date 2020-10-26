@@ -6,7 +6,8 @@
 'header',
 'about-us',
 'footer',
-'kards';
+'kards',
+'category';
 * {
     box-sizing: border-box;
 }
@@ -29,9 +30,9 @@ body {
         font-size:16px;
     }
 }
-@media only screen and(max-width: 500px){
+@media only screen and(max-width: 700px){
     body{
-        font-size:16px;
+        font-size:14px;
     }
 }
 .title{
@@ -48,4 +49,16 @@ body {
 a{
     color: inherit;
     text-decoration:inherit;
+}
+h1{
+    font-family: 'Spinnaker', sans-serif;
+    font-weight: normal;
+}
+
+h2{
+    font-family: 'Spinnaker', sans-serif;
+}
+
+p{
+    font-family: 'Varela', sans-serif;
 }

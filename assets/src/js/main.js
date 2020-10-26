@@ -9,11 +9,44 @@ $('.carousel').slick({
     autoplaySpeed: 5000,
 });
 //Responsive menu
-var checkbox = document.querySelector('#checkbox-menu');
+const header__list = document.querySelector('.header__list')
+const checkbox = document.querySelector('#checkbox-menu');
     checkbox.addEventListener ("click",function(event){
-        var header__list = document.querySelector('.header__list')
+        
         header__list.classList.toggle("open-menu")
     });
+//header Search
+const bars = document.querySelector('.hamburger-menu');
+const search = document.querySelector('.header__search');
+const items = document.querySelector('.header__items');
+    search.addEventListener ("focus",function(event){
+        items.classList.add("open-search");
+        checkbox.classList.remove('#checkbox-menu');
+        bars.classList.add('close-menu');
+    
+    });
+    search.addEventListener ("focusout",function(event){
+        items.classList.remove("open-search")
+        bars.classList.remove('close-menu');
+        
+    }); 
+    const submenu = document.querySelector('.header__link--theme')
+    const submenu__items = document.querySelectorAll(".header__items--submenu")
+    const arrowUp = document.querySelector('.header__arrow-up')
+    const arrowDown = document.querySelector('.header__arrow-down')
+    submenu.addEventListener('click',function(event){
+        for (let i = 0; i < submenu__items.length; i++) {
+            submenu__items[i].classList.toggle("open-submenu")
+            
+        }
+       
+            console.log(arrowDown);
+            submenu.classList.toggle("header__arrow-up");
+        
+        
+        
+    });
+
 // Connection
 const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
