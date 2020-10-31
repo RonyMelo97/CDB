@@ -16,6 +16,7 @@ const checkbox = document.querySelector('#checkbox-menu');
         header__list.classList.toggle("open-menu")
     });
 //header Search
+const magnifying = document.querySelector('.header__magnifying');
 const bars = document.querySelector('.hamburger-menu');
 const search = document.querySelector('.header__search');
 const items = document.querySelector('.header__items');
@@ -23,30 +24,32 @@ const items = document.querySelector('.header__items');
         items.classList.add("open-search");
         checkbox.classList.remove('#checkbox-menu');
         bars.classList.add('close-menu');
-    
+        magnifying.classList.add('openMagnifying');
     });
     search.addEventListener ("focusout",function(event){
         items.classList.remove("open-search")
         bars.classList.remove('close-menu');
-        
+        magnifying.classList.remove('openMagnifying');
     }); 
+    
     const submenu = document.querySelector('.header__link--theme')
     const submenu__items = document.querySelectorAll(".header__items--submenu")
-    const arrowUp = document.querySelector('.header__arrow-up')
     const arrowDown = document.querySelector('.header__arrow-down')
     submenu.addEventListener('click',function(event){
+
         for (let i = 0; i < submenu__items.length; i++) {
             submenu__items[i].classList.toggle("open-submenu")
             
         }
        
             console.log(arrowDown);
-            submenu.classList.toggle("header__arrow-up");
-        
-        
-        
+            submenu.classList.toggle("header__arrow-up");     
     });
-
+//Scroll suave
+const aboutUS = document.querySelector('.header__link--anchor')
+    aboutUS.addEventListener('click',function(event){
+        window.scroll({top: 500, left: 0, behavior: 'smooth' })
+    });
 // Connection
 const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
