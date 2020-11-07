@@ -5,7 +5,11 @@
     align-items: center;
         .title--cards{
             margin-bottom:0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             &__line-title{
+                display: flex;
                 width: 80%;
                 height: 2px;
                 background-color: black;
@@ -72,6 +76,7 @@
                 width: 100%;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                text-align: center;
             }
     }
     @media only screen and(max-width: 900px){
