@@ -33,7 +33,7 @@ const items = document.querySelector('.header__items');
         magnifying.classList.remove('openMagnifying');
     }); 
   }
-
+//Abrir e fechar Submenu
     const submenu = document.querySelector('.header__link--theme')
     const submenu__items = document.querySelectorAll(".header__items--submenu")
     const arrowDown = document.querySelector('.header__arrow-down')
@@ -48,9 +48,20 @@ const items = document.querySelector('.header__items');
             submenu.classList.toggle("header__arrow-up");     
     });
 //Scroll suave
-const aboutUS = document.querySelector('.header__link--anchor')
-    aboutUS.addEventListener('click',function(event){
+const aboutUS = document.querySelector('.header__link--anchor')  
+aboutUS.addEventListener('click',function(event){
         window.scroll({top: 500, left: 0, behavior: 'smooth' })
+    });
+    
+//Click no olho publications
+const boxEye = document.querySelector('.crud__box-eye')
+const FaEye = document.querySelector('.crud__eye-toggle')
+const FaEyeSlash = document.querySelector('.crud__eye-slash-toggle')
+console.log(boxEye);
+    boxEye.addEventListener('click',function(event){
+        console.log(boxEye);
+        FaEye.classList.toggle("eye-active")
+        FaEyeSlash.classList.toggle("eye-active")
     });
 // Connection
 const config = {

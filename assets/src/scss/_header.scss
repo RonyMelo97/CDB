@@ -10,7 +10,27 @@
         height:65px;
         position: relative;
         z-index: 1;
-        
+    }
+    .logo{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 70%;
+        height: 65px;
+        &__text{
+            color: $color-bg;
+            font-size: 2rem;
+            @media only screen and(max-width: 700px){
+                font-size: 1.7rem;
+            }
+        }
+        @media only screen and(max-width: 1200px){
+            padding-left: 40px;
+        }
+        @media only screen and(max-width: 700px){
+            width: 95%;
+            padding-left: 0px;
+        }
     }
     &__list{
         display: flex;
