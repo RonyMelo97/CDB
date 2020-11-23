@@ -11,7 +11,7 @@ $('.carousel').slick({
 //Responsive menu
 const header__list = document.querySelector('.header__list')
 const checkbox = document.querySelector('#checkbox-menu');
-    checkbox.addEventListener ("click",function(event){
+    checkbox.addEventListener("click",function(event){
         
         header__list.classList.toggle("open-menu")
     });
@@ -20,7 +20,8 @@ const magnifying = document.querySelector('.header__magnifying');
 const bars = document.querySelector('.hamburger-menu');
 const search = document.querySelector('.header__search');
 const items = document.querySelector('.header__items');
-    search.addEventListener ("focus",function(event){
+  if(search != null){
+    search.addEventListener("focus",function(event){
         items.classList.add("open-search");
         checkbox.classList.remove('#checkbox-menu');
         bars.classList.add('close-menu');
@@ -31,7 +32,8 @@ const items = document.querySelector('.header__items');
         bars.classList.remove('close-menu');
         magnifying.classList.remove('openMagnifying');
     }); 
-    
+  }
+
     const submenu = document.querySelector('.header__link--theme')
     const submenu__items = document.querySelectorAll(".header__items--submenu")
     const arrowDown = document.querySelector('.header__arrow-down')
@@ -64,6 +66,7 @@ const config = {
 
 const fb = new Firebase(config);
 
+console.log(search)
 // fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
 //     return data.json();
 // }).then(function(data) {
