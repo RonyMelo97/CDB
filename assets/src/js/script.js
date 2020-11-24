@@ -1,4 +1,4 @@
-//images carousel
+// Banner Carousel
 $('.carousel').slick({
     infinite: true,
     slidesToshow: 1,
@@ -8,49 +8,72 @@ $('.carousel').slick({
     autoplaySpeed: 5000,
 });
 
-//Responsive menu
-const headerList = document.querySelector('.header__list');
-const checkbox = document.querySelector('#checkbox-menu');
+// Elements
+const els = {
+    search: document.querySelector('.header__search'),
+    header: {
+        items: document.querySelector('.header__items'),
+        open: document.querySelector('.header__open'),
+        list: document.querySelector('.header__list')
+    },
+    menu: {
+        bars: document.querySelector('.hamburger-menu'),
+        checkbox: document.querySelector('#checkbox-menu')
+    },
+    submenu: {
+        self: document.querySelector('.header__link--theme'),
+        items: document.querySelectorAll(".header__items--submenu")
+    },
+    anchor: document.querySelector('.header__link--anchor')
+};
 
-checkbox.addEventListener("click", () => {
-    headerList.classList.toggle("open-menu");
-});
-
-//header Search
-const magnifying = document.querySelector('.header__magnifying');
-const bars = document.querySelector('.hamburger-menu');
-const search = document.querySelector('.header__search');
-const items = document.querySelector('.header__items');
-
-search.addEventListener("focus", () => {
-    items.classList.add("open-search");
-    checkbox.classList.remove('#checkbox-menu');
-    bars.classList.add('close-menu');
-    magnifying.classList.add('open');
-});
-
-search.addEventListener("focusout", () => {
-    items.classList.remove("open-search");
-    bars.classList.remove('close-menu');
-    magnifying.classList.remove('open');
+// Handle Responsive Menu
+els.menu.checkbox.addEventListener("click", () => {
+    els.header.list.classList.toggle("open-menu");
 });
 
 
+// Els to handle search
+const search = els.search,
+    items = els.header.items,
+    checkbox = els.menu.checkbox,
+    bars = els.menu.bars,
+    headerOpen = els.header.open
 
-const submenu = document.querySelector('.header__link--theme');
-const submenuItems = document.querySelectorAll(".header__items--submenu");
+// Handle Search
+if (search !== null) {
+    search.addEventListener("focus", () => {
+        items.classList.add("open-search");
+        checkbox.classList.remove('#checkbox-menu');
+        bars.classList.add('close-menu');
+        headerOpen.classList.add('open');
+    });
 
+    search.addEventListener("focusout", () => {
+        items.classList.remove("open-search");
+        bars.classList.remove('close-menu');
+        headerOpen.classList.remove('open');
+    });
+}
+
+
+// Els to handle submenu
+const submenu = els.submenu.self;
+
+// Handle submenu
 submenu.addEventListener('click', () => {
 
-    for (let item of submenuItems) {
+    for (let item of els.submenu.items) {
         item.classList.toggle("open-submenu");
     }
 
     submenu.classList.toggle("submenu-opened");
 });
 
-//Scroll suave
-const aboutUS = document.querySelector('.header__link--anchor');
-aboutUS.addEventListener('click', () => {
-    window.scroll({ top: 500, left: 0, behavior: 'smooth' })
+// Smooth Scroll
+els.anchor.addEventListener('click', (event) => {
+    const target = event.target,
+        el = target.dataset.target;
+
+    el.scrollIntoView({ behavior: 'smooth' })
 });

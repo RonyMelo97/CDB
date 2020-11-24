@@ -20,8 +20,30 @@ const fb = new Firebase(config);
 //     console.log(data)
 // })
 
+// Elements
+
+const els = {
+    inputs: {
+        group: document.querySelectorAll('.input-group')
+    }
+}
+
+// Handle Document Ready
+
+window.onload = () => {
+    setTimeout(() => {
+        for (let group of els.inputs.group) {
+            let value = group.querySelector('.input-control').value;
+
+            if (value !== null && value !== '') {
+                group.classList.add('floating');
+            }
+        }
+    }, 100)
+};
+
 // Input Events 
-for (let group of document.querySelectorAll('.input-group')) {
+for (let group of els.inputs.group) {
 
     const inputControl = group.querySelector('.input-control');
     const labelControl = group.querySelector('.label-control');
@@ -43,7 +65,6 @@ for (let group of document.querySelectorAll('.input-group')) {
             group.classList.add('floating');
         }
     });
-
 };
 
 // Tabs Events
@@ -82,7 +103,7 @@ function addTab(title, name, close = false) {
         tab.classList.add('tabs__tab');
         tab.setAttribute('data-tab', name);
         tab.innerText = title;
-        tab.addEventListener('click', function() {
+        tab.addEventListener('click', () => {
             showTab(name);
         })
 
