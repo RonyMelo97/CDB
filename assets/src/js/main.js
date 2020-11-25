@@ -48,7 +48,7 @@ window.onload = () => {
 
 function init() {
 
-    getPosts().then(posts => {
+    getPosts({ limit: 4 }).then(posts => {
 
         const source = document.getElementById('last-posts-template').innerHTML;
         const template = Handlebars.compile(source);
@@ -180,34 +180,31 @@ if (els.forms.register) {
 // ############################################### // 
 
 // DB References
-
-function getData(path) {
-    let db;
-
-    if (typeof firebase.database === 'function') {
-        db = firebase.database();
-    } else {
-        throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
-        return false;
-    }
-
-    return db.ref(path).once('value').then(snapshot => {
-        return snapshot.val();
-    })
+let db;
+if (typeof firebase.database === 'function') {
+    db = firebase.database();
+} else {
+    throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
 }
 
 function getPosts(args) {
 
     if (!args) {
-        return getData('/posts').then(posts => {
-            return posts;
-        });
+        return db.ref('/posts').once('value').then(snapshot => {
+            return snapshot.val();
+        })
     }
 
     if (args) {
         if (args.id) {
-            return getData(`/posts/${args.id}`).then(post => {
-                return post;
+            return db.ref(`/posts/${args.id}`).once('value').then(snapshot => {
+                return snapshot.val();
+            })
+        }
+
+        if (args.limit) {
+            return db.ref('/posts').limitToFirst(args.limit).once('value').then(snapshot => {
+                return snapshot.val();
             });
         }
     }
