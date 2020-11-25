@@ -1,4 +1,5 @@
 import Firebase from './firebase.js';
+<<<<<<< HEAD
 //images carousel
 $('.carousel').slick({
     infinite:true,
@@ -63,6 +64,8 @@ console.log(boxEye);
         FaEye.classList.toggle("eye-active")
         FaEyeSlash.classList.toggle("eye-active")
     });
+=======
+>>>>>>> 901a4c7620d811fe5d8ac8f5b571133dad3bcc3a
 // Connection
 const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
@@ -77,15 +80,54 @@ const config = {
 
 const fb = new Firebase(config);
 
-console.log(search)
 // fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
 //     return data.json();
 // }).then(function(data) {
 //     console.log(data)
 // })
 
+// Elements
+
+const els = {
+    inputs: {
+        group: document.querySelectorAll('.input-group')
+    },
+    forms: {
+        login: document.querySelector('.login-form'),
+        register: document.querySelector('.register-form')
+    }
+}
+
+// Handle Document Ready
+
+window.onload = () => {
+    init();
+
+    for (let group of els.inputs.group) {
+        let value = group.querySelector('.input-control').value;
+
+        if (value !== null && value !== '') {
+            group.classList.add('floating');
+        }
+    }
+};
+
+
+function init() {
+
+    getPosts().then(posts => {
+
+        const source = document.getElementById('last-posts-template').innerHTML;
+        const template = Handlebars.compile(source);
+        const html = template({ posts: posts });
+
+        document.getElementById('container-cards').innerHTML = html;
+    });
+
+}
+
 // Input Events 
-for (let group of document.querySelectorAll('.input-group')) {
+for (let group of els.inputs.group) {
 
     const inputControl = group.querySelector('.input-control');
     const labelControl = group.querySelector('.label-control');
@@ -107,7 +149,6 @@ for (let group of document.querySelectorAll('.input-group')) {
             group.classList.add('floating');
         }
     });
-
 };
 
 // Tabs Events
@@ -146,7 +187,7 @@ function addTab(title, name, close = false) {
         tab.classList.add('tabs__tab');
         tab.setAttribute('data-tab', name);
         tab.innerText = title;
-        tab.addEventListener('click', function() {
+        tab.addEventListener('click', () => {
             showTab(name);
         })
 
@@ -169,35 +210,73 @@ function addTab(title, name, close = false) {
 }
 
 // Login Form
+if (els.forms.login) {
+    els.forms.login.addEventListener('submit', function(ev) {
+        ev.preventDefault();
 
-document.querySelector('.login-form').addEventListener('submit', function(ev) {
-    ev.preventDefault();
+        const email = this.querySelector('input[name="email"]').value;
+        const password = this.querySelector('input[name="password"]').value;
 
-    const email = this.querySelector('input[name="email"]').value;
-    const password = this.querySelector('input[name="password"]').value;
-
-    if (email == '' || password == '') {
-        alert('Preencha todos os campos');
-    } else {
-        fb.user.login(email, password);
-    }
-
-});
+        if (email == '' || password == '') {
+            alert('Preencha todos os campos');
+        } else {
+            fb.user.login(email, password);
+        }
+    });
+}
 
 // Register Form
+if (els.forms.register) {
+    els.forms.register.addEventListener('submit', function(ev) {
+        ev.preventDefault();
 
-document.querySelector('.register-form').addEventListener('submit', function(ev) {
-    ev.preventDefault();
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const password = this.querySelector('input[name="password"]').value;
+        const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
 
-    const name = this.querySelector('input[name="name"]').value;
-    const email = this.querySelector('input[name="email"]').value;
-    const password = this.querySelector('input[name="password"]').value;
-    const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
+        if (name == '' && email == '' && password == '' && confirmPassword == '') {
+            alert('Preencha todos os campos');
+        } else {
+            fb.user.register(email, password);
+        }
 
-    if (name == '' && email == '' && password == '' && confirmPassword == '') {
-        alert('Preencha todos os campos');
+    });
+}
+
+// ############################################### // 
+
+// DB References
+
+function getData(path) {
+    let db;
+
+    if (typeof firebase.database === 'function') {
+        db = firebase.database();
     } else {
-        fb.user.register(email, password);
+        throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
+        return false;
     }
 
-});
+    return db.ref(path).once('value').then(snapshot => {
+        return snapshot.val();
+    })
+}
+
+function getPosts(args) {
+
+    if (!args) {
+        return getData('/posts').then(posts => {
+            return posts;
+        });
+    }
+
+    if (args) {
+        if (args.id) {
+            return getData(`/posts/${args.id}`).then(post => {
+                return post;
+            });
+        }
+    }
+
+}
