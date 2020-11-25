@@ -25,22 +25,35 @@ const fb = new Firebase(config);
 const els = {
     inputs: {
         group: document.querySelectorAll('.input-group')
+    },
+    forms: {
+        login: document.querySelector('.login-form'),
+        register: document.querySelector('.register-form')
     }
 }
 
 // Handle Document Ready
 
 window.onload = () => {
-    setTimeout(() => {
-        for (let group of els.inputs.group) {
-            let value = group.querySelector('.input-control').value;
+    init();
 
-            if (value !== null && value !== '') {
-                group.classList.add('floating');
-            }
+    for (let group of els.inputs.group) {
+        let value = group.querySelector('.input-control').value;
+
+        if (value !== null && value !== '') {
+            group.classList.add('floating');
         }
-    }, 100)
+    }
 };
+
+
+function init() {
+
+    getPosts().then(posts => {
+        console.log('Lista de postagens', posts);
+    });
+
+}
 
 // Input Events 
 for (let group of els.inputs.group) {
@@ -126,35 +139,73 @@ function addTab(title, name, close = false) {
 }
 
 // Login Form
+if (els.forms.login) {
+    els.forms.login.addEventListener('submit', function(ev) {
+        ev.preventDefault();
 
-document.querySelector('.login-form').addEventListener('submit', function(ev) {
-    ev.preventDefault();
+        const email = this.querySelector('input[name="email"]').value;
+        const password = this.querySelector('input[name="password"]').value;
 
-    const email = this.querySelector('input[name="email"]').value;
-    const password = this.querySelector('input[name="password"]').value;
-
-    if (email == '' || password == '') {
-        alert('Preencha todos os campos');
-    } else {
-        fb.user.login(email, password);
-    }
-
-});
+        if (email == '' || password == '') {
+            alert('Preencha todos os campos');
+        } else {
+            fb.user.login(email, password);
+        }
+    });
+}
 
 // Register Form
+if (els.forms.register) {
+    els.forms.register.addEventListener('submit', function(ev) {
+        ev.preventDefault();
 
-document.querySelector('.register-form').addEventListener('submit', function(ev) {
-    ev.preventDefault();
+        const name = this.querySelector('input[name="name"]').value;
+        const email = this.querySelector('input[name="email"]').value;
+        const password = this.querySelector('input[name="password"]').value;
+        const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
 
-    const name = this.querySelector('input[name="name"]').value;
-    const email = this.querySelector('input[name="email"]').value;
-    const password = this.querySelector('input[name="password"]').value;
-    const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
+        if (name == '' && email == '' && password == '' && confirmPassword == '') {
+            alert('Preencha todos os campos');
+        } else {
+            fb.user.register(email, password);
+        }
 
-    if (name == '' && email == '' && password == '' && confirmPassword == '') {
-        alert('Preencha todos os campos');
+    });
+}
+
+// ############################################### // 
+
+// DB References
+
+function getData(path) {
+    let db;
+
+    if (typeof firebase.database === 'function') {
+        db = firebase.database();
     } else {
-        fb.user.register(email, password);
+        throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
+        return false;
     }
 
-});
+    return db.ref(path).once('value').then(snapshot => {
+        return snapshot.val();
+    })
+}
+
+function getPosts(args) {
+
+    if (!args) {
+        return getData('/posts').then(posts => {
+            return posts;
+        });
+    }
+
+    if (args) {
+        if (args.id) {
+            return getData(`/posts/${args.id}`).then(post => {
+                return post;
+            });
+        }
+    }
+
+}
