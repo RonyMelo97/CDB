@@ -25,40 +25,45 @@ body {
     overflow-x: hidden;
     font-family: 'Varela', 'Open Sans', sans-serif;
 }
-@media only screen and(max-width: 900px){
-    body{
-        font-size:16px;
+
+@media only screen and(max-width: 900px) {
+    body {
+        font-size: 16px;
     }
 }
-@media only screen and(max-width: 700px){
-    body{
-        font-size:14px;
+
+@media only screen and(max-width: 700px) {
+    body {
+        font-size: 14px;
     }
 }
-.title{
-    color:$color-title;
+
+.title {
+    color: $color-title;
     font-weight: 400;
     font-size: 2em;
 }
 
-.text{
-    color:$color-text;
+.text {
+    color: $color-text;
     font-weight: 400;
     font-size: 1.125rem;
 }
-a{
+
+a {
     color: inherit;
-    text-decoration:inherit;
+    text-decoration: inherit;
 }
-h1{
+
+h1 {
     font-family: 'Spinnaker', sans-serif;
     font-weight: normal;
 }
 
-h2{
+h2 {
     font-family: 'Spinnaker', sans-serif;
 }
 
-p{
+p {
     font-family: 'Varela', sans-serif;
 }

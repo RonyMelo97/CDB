@@ -10,10 +10,11 @@ export default function Firebase(config) {
 
         switch (code) {
             case 'auth/user-not-found':
-                message = 'Usuário não encontrado';
-                break;
             case 'auth/wrong-password':
-                message = 'Senha incorreta';
+                message = 'Email ou senha incorretos';
+                // message = 'Usuário não encontrado';
+                // break;
+                // message = 'Senha incorreta';
                 break;
             case 'auth/weak-password':
                 message = 'A senha deve conter no mínimo 6 caracteres';
