@@ -104,32 +104,11 @@
                 <hr class="title--cards__line-title">
             </h2>
 
-            <div class="container container--cards">
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
-                    <div class="cards__preview-text">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                    </div>
-                </a>
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide2.jpg);">
-                    <div class="cards__preview-text">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                    </div>
-                </a>
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/bg.jpg);">
-                    <div class="cards__preview-text">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                    </div>
-                </a>
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
-                    <div class="cards__preview-text">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                    </div>
-                </a>
-            </div>
+            <div class="container container--cards" id="container-cards"></div>
         </div>
     </article>
     <div class="about-us__box-text container">
-        <h2 class="title">Oque é CBD?</h2>
+        <h2 class="title">O que é CBD?</h2>
     </div>
     <article class="illustration-cdb">
         <div class="container container--column">
@@ -155,7 +134,18 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script type="text/javascript" src="./assets/dist/js/script.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script type="module" src="./assets/dist/js/main.js"></script>
+
+    <script id="last-posts-template" type="text/x-handlebars-template">
+        {{#each posts}}
+        <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
+            <div class="cards__preview-text">
+                <p>{{this.title}}</p>
+            </div>
+        </a>
+        {{/each}}
+    </script>
 
 </body>
 

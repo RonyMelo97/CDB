@@ -50,7 +50,12 @@ window.onload = () => {
 function init() {
 
     getPosts().then(posts => {
-        console.log('Lista de postagens', posts);
+
+        const source = document.getElementById('last-posts-template').innerHTML;
+        const template = Handlebars.compile(source);
+        const html = template({ posts: posts });
+
+        document.getElementById('container-cards').innerHTML = html;
     });
 
 }
