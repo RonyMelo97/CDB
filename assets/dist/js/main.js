@@ -1,5 +1,4 @@
 import Firebase from './firebase.js';
-<<<<<<< HEAD
 //images carousel
 $('.carousel').slick({
     infinite:true,
@@ -64,8 +63,6 @@ console.log(boxEye);
         FaEye.classList.toggle("eye-active")
         FaEyeSlash.classList.toggle("eye-active")
     });
-=======
->>>>>>> 901a4c7620d811fe5d8ac8f5b571133dad3bcc3a
 // Connection
 const config = {
     apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
