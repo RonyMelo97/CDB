@@ -14,7 +14,8 @@ const els = {
     header: {
         items: document.querySelector('.header__items'),
         open: document.querySelector('.header__open'),
-        list: document.querySelector('.header__list')
+        list: document.querySelector('.header__list'),
+        login: document.querySelector('.header__btn-default--logIn')
     },
     menu: {
         bars: document.querySelector('.hamburger-menu'),
@@ -22,7 +23,7 @@ const els = {
     },
     submenu: {
         self: document.querySelector('.header__link--theme'),
-        items: document.querySelectorAll(".header__items--submenu")
+        items: document.querySelectorAll('.header__items--submenu')
     },
     anchor: document.querySelector('.header__link--anchor')
 };
@@ -77,3 +78,25 @@ els.anchor.addEventListener('click', (event) => {
 
     el.scrollIntoView({ behavior: 'smooth' })
 });
+
+els.header.login.addEventListener('click', () => {
+    document.querySelector('.modal--tabs').classList.add('open');
+    document.querySelector('.overlay').classList.add('visible');
+});
+
+document.querySelector('.overlay').addEventListener('click', () => {
+    document.querySelector('.modal--tabs').classList.remove('open');
+    document.querySelector('.overlay').classList.remove('visible');
+})
+
+//Click no olho publications
+const boxEye = document.querySelector('.crud__box-eye')
+const FaEye = document.querySelector('.crud__eye-toggle')
+const FaEyeSlash = document.querySelector('.crud__eye-slash-toggle')
+console.log(boxEye);
+boxEye.addEventListener('click', function(event) {
+    console.log(boxEye);
+    FaEye.classList.toggle("eye-active")
+    FaEyeSlash.classList.toggle("eye-active")
+});
+// Connection

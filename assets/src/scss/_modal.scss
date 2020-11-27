@@ -6,15 +6,23 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: $color-bg;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
     &__content {
         padding: 17.5px 35px 35px;
         background-color: white;
     }
     &--tabs {
         @extend .modal;
-        padding: 25px;
+        background-color: transparent;
+        padding: 0;
         .modal__content {
             display: none;
         }
+    }
+    &.open {
+        opacity: 1;
+        pointer-events: auto;
     }
 }

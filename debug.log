@@ -1,2 +1,3 @@
 [1021/010344.666:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema n„o pode encontrar o caminho especificado. (0x3)
 [1022/122710.755:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema n„o pode encontrar o caminho especificado. (0x3)
+[1126/224736.405:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema n√£o pode encontrar o caminho especificado. (0x3)

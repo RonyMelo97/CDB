@@ -21,6 +21,84 @@
 </head>
 
 <body>
+    <div class="overlay"></div>
+    <div class="modal--tabs">
+        <ul class="tabs">
+            <li class="tabs__tab selected" data-tab="login">Login</li>
+            <li class="tabs__tab" data-tab="register">Cadastro</li>
+        </ul>
+
+        <div class="modal__content login active" data-content="login">
+            <form class="login-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input name="email" type="text" class="input-control" autocomplete="email" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+									Entrar
+								</button>
+            </form>
+
+            <!--             <span class="text-default forgot-password-link">
+            	<a onClick="addTab('Esqueceu a senha?', 'forgot-password', true) " class="link">Esqueceu a senha?</a>
+						</span>
+
+            <span class="text-default register-link">
+							Ainda não é cadastrado? 
+							<a onClick="showTab('register')" class="link">Cadastre-se</a>
+						</span> -->
+        </div>
+
+        <div class="modal__content register" data-content="register">
+            <form class="register-form">
+                <div class="input-group">
+                    <label class="label-control">Nome</label>
+                    <span class="material-icons">person</span>
+                    <input name="name" type="text" class="input-control" autocomplete="name" placeholder="João da Silva">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input name="email" type="text" class="input-control" autocomplete="email" placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+                <div class="input-group">
+                    <label class="label-control">Confirme sua senha</label>
+                    <span class="material-icons">lock</span>
+                    <input name="confirm-password" type="password" class="input-control" autocomplete="off" placeholder="*******">
+                </div>
+
+                <button class="btn-default" type="submit">
+								Registrar
+							</button>
+            </form>
+        </div>
+
+        <div class="modal__content forgot-password" data-content="forgot-password">
+            <form class="forgot-password-form">
+                <div class="input-group">
+                    <label class="label-control">Email</label>
+                    <span class="material-icons">email</span>
+                    <input type="text" class="input-control" placeholder="seu@email.com">
+                </div>
+
+                <button class="btn-default" type="submit">
+								Recuperar
+							</button>
+            </form>
+        </div>
+    </div>
     <header class="header">
         <nav class="header__nav container">
             <div class="hamburger-menu">
