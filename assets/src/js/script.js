@@ -72,12 +72,14 @@ submenu.addEventListener('click', () => {
 });
 
 // Smooth Scroll
-els.anchor.addEventListener('click', (event) => {
-    const target = event.target,
-        el = target.dataset.target;
+if (els.anchor) {
+    els.anchor.addEventListener('click', (event) => {
+        const target = event.target,
+            el = target.dataset.target;
 
-    el.scrollIntoView({ behavior: 'smooth' })
-});
+        el.scrollIntoView({ behavior: 'smooth' })
+    });
+}
 
 els.header.login.addEventListener('click', () => {
     document.querySelector('.modal--tabs').classList.add('open');
@@ -93,10 +95,12 @@ document.querySelector('.overlay').addEventListener('click', () => {
 const boxEye = document.querySelector('.crud__box-eye')
 const FaEye = document.querySelector('.crud__eye-toggle')
 const FaEyeSlash = document.querySelector('.crud__eye-slash-toggle')
-console.log(boxEye);
-boxEye.addEventListener('click', function(event) {
-    console.log(boxEye);
-    FaEye.classList.toggle("eye-active")
-    FaEyeSlash.classList.toggle("eye-active")
-});
+
+if (boxEye) {
+    boxEye.addEventListener('click', function(event) {
+        console.log(boxEye);
+        FaEye.classList.toggle("eye-active")
+        FaEyeSlash.classList.toggle("eye-active")
+    });
+}
 // Connection

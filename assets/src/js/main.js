@@ -14,12 +14,6 @@ const config = {
 
 const fb = new Firebase(config);
 
-// fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
-//     return data.json();
-// }).then(function(data) {
-//     console.log(data)
-// })
-
 // Elements
 
 const els = {
@@ -48,15 +42,37 @@ window.onload = () => {
 
 
 function init() {
+    switch (window.location.pathname) {
+        case '/':
+            getPosts({ limit: 4 }).then(posts => {
 
-    getPosts({ limit: 4 }).then(posts => {
+                const source = document.getElementById('last-posts-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template({ posts: posts });
 
-        const source = document.getElementById('last-posts-template').innerHTML;
-        const template = Handlebars.compile(source);
-        const html = template({ posts: posts });
+                document.getElementById('container-cards').innerHTML = html;
+            });
+            break;
 
-        document.getElementById('container-cards').innerHTML = html;
-    });
+        case '/post.html':
+            console.log('aqui')
+            let id = window.location.search.split('=');
+            id = id[1];
+
+            getPosts({ id: id }).then(post => {
+                const source = document.getElementById('post-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template(post);
+
+                document.getElementById('container-post').innerHTML = html;
+
+                document.getElementById('container-title').innerText = post.title;
+            });
+            break;
+
+        default:
+            break;
+    }
 
 }
 
@@ -188,7 +204,7 @@ if (typeof firebase.database === 'function') {
     throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
 }
 
-function getPosts(args) {
+export function getPosts(args) {
 
     if (!args) {
         return db.ref('/posts').once('value').then(snapshot => {
