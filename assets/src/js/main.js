@@ -48,7 +48,7 @@ async function init() {
     switch (page) {
         case '/':
         case '/index.html':
-            await getPosts().then(posts => {
+            await getPosts({ limit: 4 }).then(posts => {
 
                 const source = document.getElementById('posts-template').innerHTML;
                 const template = Handlebars.compile(source);
@@ -59,18 +59,29 @@ async function init() {
             break;
 
         case '/post.html':
-            let id = window.location.search.split('=');
-            id = id[1];
 
-            await getPosts({ id: id }).then(post => {
-                const source = document.getElementById('post-template').innerHTML;
-                const template = Handlebars.compile(source);
-                const html = template(post);
+            if (window.location.search) {
+                let id = window.location.search.split('=');
+                id = id[1];
 
-                document.getElementById('container-posts').innerHTML = html;
+                await getPosts({ id: id }).then(post => {
+                    const source = document.getElementById('post-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template(post);
 
-                document.getElementById('container-title').innerText = post.title;
-            });
+                    document.getElementById('container-post').innerHTML = html;
+
+                    document.getElementById('container-title').innerText = post.title;
+                });
+            } else {
+                await getPosts().then(posts => {
+                    const source = document.getElementById('posts-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template({ posts: posts });
+
+                    document.getElementById('container-posts').innerHTML = html;
+                });
+            }
             break;
 
         case '/new-post.html':

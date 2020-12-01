@@ -170,6 +170,7 @@
     </header>
 
     <div class="post container" id="container-post"></div>
+    <div class="container container--cards" id="container-posts"></div>
 
     <footer class="footer">
         <div class="footer__copyright">
@@ -195,6 +196,16 @@
     <script id="post-template" type="text/x-handlebars-template">
         <h2 class="title">{{ title }}</h2>
         <p class="text"> {{ post }} </p>
+    </script>
+
+    <script id="posts-template" type="text/x-handlebars-template">
+        {{#each posts}}
+        <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
+            <div class="cards__preview-text">
+                <p>{{this.title}}</p>
+            </div>
+        </a>
+        {{/each}}
     </script>
 
 </body>
