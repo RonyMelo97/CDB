@@ -80,6 +80,7 @@ async function init() {
                     const html = template({ posts: posts });
 
                     document.getElementById('container-posts').innerHTML = html;
+                    document.getElementById('title-posts').innerText = 'Notícias';
                 });
             }
             break;
