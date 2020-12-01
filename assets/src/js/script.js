@@ -59,17 +59,19 @@ if (search !== null) {
 
 
 // Els to handle submenu
-const submenu = els.submenu.self;
+if (els.submenu.self) {
+    const submenu = els.submenu.self;
 
-// Handle submenu
-submenu.addEventListener('click', () => {
+    // Handle submenu
+    submenu.addEventListener('click', () => {
 
-    for (let item of els.submenu.items) {
-        item.classList.toggle("open-submenu");
-    }
+        for (let item of els.submenu.items) {
+            item.classList.toggle("open-submenu");
+        }
 
-    submenu.classList.toggle("submenu-opened");
-});
+        submenu.classList.toggle("submenu-opened");
+    });
+}
 
 // Smooth Scroll
 if (els.anchor) {

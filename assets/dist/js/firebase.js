@@ -70,6 +70,10 @@ export default function Firebase(config) {
 
                 toast.show('success', 'Usuário logado com sucesso!');
 
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
+
             }).catch(function(error) {
                 toast.show('error', handleError(error.code));
 

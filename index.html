@@ -23,7 +23,7 @@
 <body>
     <div class="preload">
         <div class="content">
-            <img src="/assets/img/load.png">
+            <img src="./assets/img/load.png">
             <h2>Cannabis Database</h2>
         </div>
     </div>
@@ -138,8 +138,15 @@
                         <p>Início</p>
                     </a>
                 </div>
+                <div class="header__items header__items--hover header-admin">
+                    <a href="./home-system.html" class="header__link header__link--about-us">
+                        <i class="fas fa-users"></i>
+                        <p>Painel</p>
+                    </a>
+                </div>
 
-                <div class="header__items header__items--hover">
+
+                <!--                 <div class="header__items header__items--hover">
                     <a href="#" class="header__link header__link--theme">
                         <i class="fas fa-brush"></i>
                         <p>Temas</p>
@@ -159,20 +166,20 @@
                             <p class="header__link ">Categoria</p>
                         </a>
                     </div>
-                </div>
+                </div> -->
         </nav>
 
         <div class="carousel">
-            <div class="dark-bg" style="background-image: url(/assets/img/bg.jpg)">
+            <div class="dark-bg" style="background-image: url(./assets/img/bg.jpg)">
                 <h1 class="carousel__title">Eduque-se e se Medique!</h1>
             </div>
-            <div class="dark-bg" style="background-image: url(/assets/img/slide2.jpg)">
+            <div class="dark-bg" style="background-image: url(./assets/img/slide2.jpg)">
                 <h1 class="carousel__title">Vá de verde! Naturalize-se!</h1>
             </div>
-            <div class="dark-bg" style="background-image: url(/assets/img/slide3.jpg)">
+            <div class="dark-bg" style="background-image: url(./assets/img/slide3.jpg)">
                 <h1 class="carousel__title">Permita-se dechavar mitos, Informe-se!</h1>
             </div>
-            <div class="dark-bg" style="background-image: url(/assets/img/slide4.jpg)">
+            <div class="dark-bg" style="background-image: url(./assets/img/slide4.jpg)">
                 <h1 class="carousel__title">Acenda a chama científica, queime preconceitos!</h1>
             </div>
         </div>
@@ -188,6 +195,8 @@
             <h2 class="title">
                 Últimas Notícias
             </h2>
+
+            <a style="color: #6FA821" href="./post.html">Ver todas as notícias</a>
 
             <div class="container container--cards" id="container-cards"></div>
         </div>
@@ -226,7 +235,7 @@
 
     <script id="posts-template" type="text/x-handlebars-template">
         {{#each posts}}
-        <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
+        <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(./assets/img/slide1.jpg);">
             <div class="cards__preview-text">
                 <p>{{this.title}}</p>
             </div>

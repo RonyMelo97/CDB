@@ -45,7 +45,7 @@
             <div class="header__list">
                 <div class="header__items header__order-items2">
                     <a class="header__link-btn header__link-btn--system" href="index.html">
-                        <!-- <div class="btn-default header__btn-default--exit">Sair</div> -->
+                        <div class="btn-default header__btn-default--exit">Sair</div>
                         <div class="btn-default header__btn-default--register header__btn-default--system">Crie a sua conta</div>
                     </a>
                 </div>
@@ -81,25 +81,16 @@
         </nav>
     </header>
     <main class="container container--post">
-        <form action="" class="form__post">
+        <form class="form__post">
             <div class="post">
-                <input class="post__input text" placeholder="Digite o titulo do banner">
-
-                </input>
+                <input class="post__input text" placeholder="Digite o titulo do notícia" />
             </div>
-            <div class="post">
-                <input class="post__input" placeholder="Digite o Subtitulo">
-
-                </input>
-            </div>
-            <div class="">
-                <textarea class="post__textarea" placeholder="Digite o titulo do banner">
-
-                </textarea>
+            <div style="width: 50%">
+                <textarea class="post__textarea" placeholder="Digite o conteúdo da notícia"></textarea>
             </div>
             <div class="box-Btn--post">
-                <div class="btn-default btn-default--post">Post</div>
-                <div class="btn-default header__btn-default--exit">Cancelar</div>
+                <button type="submit" class="btn-default btn-default--post">Post</button>
+                <a href="publications.html" class="btn-default header__btn-default--exit">Cancelar</a>
             </div>
         </form>
     </main>
@@ -121,7 +112,7 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <script type="module" src="./assets/dist/js/main.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script id="posts-template" type="text/x-handlebars-template">
         {{#each posts}}
@@ -165,29 +156,59 @@
 
         function validAccount() {
             const email = window.localStorage.getItem('user');
+            const uid = window.localStorage.getItem('uid');
 
-            if (email) {
-
-                if (
-                    email === 'faculdade@gabrieldeveloper.com'
-                ) {
-                    return true;
-                } else {
-                    return false;
-                }
-
+            if (email && uid) {
+                return true;
             } else {
                 return false;
             }
         }
 
-        function reqDel(id) {
-            if (validAccount()) {
-                if (confirm('Você realmente deseja excluir essa publicação?')) {
-                    db.ref(`/posts/${id}`).remove();
+        function savePost(id, title, post) {
+            const postData = {
+                id: id,
+                title: title,
+                post: post
+            };
+
+            const updates = {};
+            updates['/posts/' + id] = postData;
+
+            toastr['success']('Notícia salva com sucesso');
+
+            setTimeout(function() {
+                window.location.href = 'publications.html';
+            }, 1000);
+
+            return db.ref().update(updates);
+        }
+
+        document.querySelector('.form__post').addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+            const title = document.querySelector('.post__input').value;
+            const post = document.querySelector('.post__textarea').value;
+
+            if (title === null || title === '' || post === null || post === '') {
+
+                toastr['error']('Por favor, preencha todos os campos');
+            } else {
+
+                if (document.querySelector('.btn-default--post').dataset.id) {
+                    savePost(document.querySelector('.btn-default--post').dataset.id, title, post);
+
+                } else {
+
+                    db.ref('/posts').once('value').then(snapshot => {
+                        savePost(snapshot.val().length, title, post);
+                    })
+
                 }
             }
-        }
+
+        })
     </script>
 </body>
 
