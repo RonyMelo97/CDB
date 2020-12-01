@@ -187,11 +187,12 @@ function addTab(title, name, close = false) {
 
 function validAccount() {
     const email = window.localStorage.getItem('user');
+    const uid = window.localStorage.getItem('uid');
 
     if (email) {
 
         if (
-            email === 'faculdade@gabrieldeveloper.com'
+            email === 'faculdade@gabrieldeveloper.com' && uid === 'yzfm9fwA63PJkns330M1Gv3VG5C2'
         ) {
             return true;
         } else {
