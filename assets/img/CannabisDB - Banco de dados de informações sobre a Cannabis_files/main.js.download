@@ -42,13 +42,10 @@ window.onload = () => {
 };
 
 
-async function init() {
-    const page = window.location.pathname;
-
-    switch (page) {
+function init() {
+    switch (window.location.pathname) {
         case '/':
-        case '/index.html':
-            await getPosts().then(posts => {
+            getPosts().then(posts => {
 
                 const source = document.getElementById('posts-template').innerHTML;
                 const template = Handlebars.compile(source);
@@ -62,7 +59,7 @@ async function init() {
             let id = window.location.search.split('=');
             id = id[1];
 
-            await getPosts({ id: id }).then(post => {
+            getPosts({ id: id }).then(post => {
                 const source = document.getElementById('post-template').innerHTML;
                 const template = Handlebars.compile(source);
                 const html = template(post);
@@ -72,7 +69,6 @@ async function init() {
                 document.getElementById('container-title').innerText = post.title;
             });
             break;
-
         case '/new-post.html':
         case '/publications.html':
         case '/home-system.html':
@@ -81,24 +77,23 @@ async function init() {
                 document.querySelector('main.container').innerHTML = '<center>Você não tem permissão para acessar esta página.</center>';
             }
 
-            if (page === '/publications.html') {
-                await getPosts().then(posts => {
+            break;
+        case '/publications.html':
+            console.log('aqui');
+            getPosts().then(posts => {
 
-                    const source = document.getElementById('posts-template').innerHTML;
-                    const template = Handlebars.compile(source);
-                    const html = template({ posts: posts });
+                const source = document.getElementById('posts-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template({ posts: posts });
 
-                    document.getElementById('container-posts').innerHTML = html;
-                });
-            }
-
+                document.getElementById('container-posts').innerHTML = html;
+            });
+            break;
 
             break;
         default:
             break;
     }
-
-    document.querySelector('.preload').classList.add('loaded');
 
 }
 
@@ -186,7 +181,7 @@ function addTab(title, name, close = false) {
 }
 
 function validAccount() {
-    const email = window.localStorage.getItem('user');
+    const email = window.localStorage.getItem('email');
 
     if (email) {
 
@@ -248,7 +243,7 @@ if (typeof firebase.database === 'function') {
     throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
 }
 
-function getPosts(args) {
+export function getPosts(args) {
 
     if (!args) {
         return db.ref('/posts').once('value').then(snapshot => {

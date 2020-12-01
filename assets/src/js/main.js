@@ -1,4 +1,5 @@
 import Firebase from './firebase.js';
+import Toaster from './toaster.js';
 
 // Connection
 const config = {
@@ -13,7 +14,7 @@ const config = {
 };
 
 const fb = new Firebase(config);
-
+const toast = new Toaster();
 // Elements
 
 const els = {
@@ -41,12 +42,15 @@ window.onload = () => {
 };
 
 
-function init() {
-    switch (window.location.pathname) {
-        case '/':
-            getPosts({ limit: 4 }).then(posts => {
+async function init() {
+    const page = window.location.pathname;
 
-                const source = document.getElementById('last-posts-template').innerHTML;
+    switch (page) {
+        case '/':
+        case '/index.html':
+            await getPosts().then(posts => {
+
+                const source = document.getElementById('posts-template').innerHTML;
                 const template = Handlebars.compile(source);
                 const html = template({ posts: posts });
 
@@ -55,24 +59,46 @@ function init() {
             break;
 
         case '/post.html':
-            console.log('aqui')
             let id = window.location.search.split('=');
             id = id[1];
 
-            getPosts({ id: id }).then(post => {
+            await getPosts({ id: id }).then(post => {
                 const source = document.getElementById('post-template').innerHTML;
                 const template = Handlebars.compile(source);
                 const html = template(post);
 
-                document.getElementById('container-post').innerHTML = html;
+                document.getElementById('container-posts').innerHTML = html;
 
                 document.getElementById('container-title').innerText = post.title;
             });
             break;
 
+        case '/new-post.html':
+        case '/publications.html':
+        case '/home-system.html':
+
+            if (!validAccount()) {
+                document.querySelector('main.container').innerHTML = '<center>Você não tem permissão para acessar esta página.</center>';
+            }
+
+            if (page === '/publications.html') {
+                await getPosts().then(posts => {
+
+                    const source = document.getElementById('posts-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template({ posts: posts });
+
+                    document.getElementById('container-posts').innerHTML = html;
+                });
+            }
+
+
+            break;
         default:
             break;
     }
+
+    document.querySelector('.preload').classList.add('loaded');
 
 }
 
@@ -159,6 +185,24 @@ function addTab(title, name, close = false) {
     }
 }
 
+function validAccount() {
+    const email = window.localStorage.getItem('user');
+
+    if (email) {
+
+        if (
+            email === 'faculdade@gabrieldeveloper.com'
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+
+    } else {
+        return false;
+    }
+}
+
 // Login Form
 if (els.forms.login) {
     els.forms.login.addEventListener('submit', function(ev) {
@@ -168,7 +212,7 @@ if (els.forms.login) {
         const password = this.querySelector('input[name="password"]').value;
 
         if (email == '' || password == '') {
-            alert('Preencha todos os campos');
+            toast.show('error', 'Preencha todos os campos');
         } else {
             fb.user.login(email, password);
         }
@@ -186,7 +230,7 @@ if (els.forms.register) {
         const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
 
         if (name == '' && email == '' && password == '' && confirmPassword == '') {
-            alert('Preencha todos os campos');
+            toast.show('error', 'Preencha todos os campos');
         } else {
             fb.user.register(email, password);
         }
@@ -204,7 +248,7 @@ if (typeof firebase.database === 'function') {
     throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
 }
 
-export function getPosts(args) {
+function getPosts(args) {
 
     if (!args) {
         return db.ref('/posts').once('value').then(snapshot => {

@@ -21,6 +21,13 @@
 </head>
 
 <body>
+    <div class="preload">
+        <div class="content">
+            <img src="/assets/img/load.png">
+            <h2>Cannabis Database</h2>
+        </div>
+    </div>
+
     <div class="overlay"></div>
     <div class="modal--tabs">
         <ul class="tabs">
@@ -126,6 +133,13 @@
                 </div>
 
                 <div class="header__items header__items--hover">
+                    <a href="#" class="header__link header__link--about-us header__link--anchor">
+                        <i class="fas fa-users"></i>
+                        <p>Início</p>
+                    </a>
+                </div>
+
+                <div class="header__items header__items--hover">
                     <a href="#" class="header__link header__link--theme">
                         <i class="fas fa-brush"></i>
                         <p>Temas</p>
@@ -146,14 +160,8 @@
                         </a>
                     </div>
                 </div>
-
-                <div class="header__items header__items--hover">
-                    <a href="#" class="header__link header__link--about-us header__link--anchor">
-                        <i class="fas fa-users"></i>
-                        <p>Sobre nós</p>
-                    </a>
-                </div>
         </nav>
+
         <div class="carousel">
             <div class="dark-bg" style="background-image: url(/assets/img/bg.jpg)">
                 <h1 class="carousel__title">Cannabis DB</h1>
@@ -168,6 +176,7 @@
                 <h1 class="carousel__title">Cannabis DB</h1>
             </div>
         </div>
+
     </header>
     <article class="about-us container">
         <div class="about-us__box-text">
@@ -176,9 +185,8 @@
                 relacionados acima e acreditamos ser de suma importância a quebra de alguns mitos sobre a planta e para cunho educacional, extremamente necessário. </p>
         </div>
         <div class="cards">
-            <h2 class="title title--cards">
-                Últimas postagens
-                <hr class="title--cards__line-title">
+            <h2 class="title">
+                Postagens
             </h2>
 
             <div class="container container--cards" id="container-cards"></div>
@@ -216,7 +224,7 @@
     <script type="module" src="./assets/dist/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script id="last-posts-template" type="text/x-handlebars-template">
+    <script id="posts-template" type="text/x-handlebars-template">
         {{#each posts}}
         <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
             <div class="cards__preview-text">
