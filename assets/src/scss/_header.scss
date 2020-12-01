@@ -520,6 +520,10 @@
             color: $color-bg;
             background-color: rgba(0, 0, 0, 0.3);
             margin-top: 0;
+            text-align: center;
+            @media screen and (max-width: 768px) {
+                padding: 0 75px;
+            }
         }
         .slick-prev {
             left: 35px!important;

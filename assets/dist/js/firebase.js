@@ -63,7 +63,16 @@ export default function Firebase(config) {
             firebase.auth().signInWithEmailAndPassword(email, password).then(data => {
 
                 window.localStorage.setItem('user', data.user.email);
+                window.localStorage.setItem('uid', data.user.uid);
+
+                document.querySelector('.modal--tabs').classList.remove('open');
+                document.querySelector('.overlay').classList.remove('visible');
+
                 toast.show('success', 'Usuário logado com sucesso!');
+
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
 
             }).catch(function(error) {
                 toast.show('error', handleError(error.code));

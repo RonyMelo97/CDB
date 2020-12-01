@@ -27,6 +27,15 @@ const els = {
     }
 }
 
+const exit = document.querySelector('.header__btn-default--exit');
+
+if (exit) {
+    exit.addEventListener('click', () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('uid');
+    })
+}
+
 // Handle Document Ready
 
 window.onload = () => {
@@ -45,10 +54,22 @@ window.onload = () => {
 async function init() {
     const page = window.location.pathname;
 
+    const panel = document.querySelector('.header-admin');
+
+    if (!validAccount()) {
+        if (panel) {
+            panel.remove();
+        }
+
+        if (exit) {
+            exit.remove();
+        }
+    }
+
     switch (page) {
         case '/':
         case '/index.html':
-            await getPosts().then(posts => {
+            await getPosts({ limit: 4 }).then(posts => {
 
                 const source = document.getElementById('posts-template').innerHTML;
                 const template = Handlebars.compile(source);
@@ -59,18 +80,30 @@ async function init() {
             break;
 
         case '/post.html':
-            let id = window.location.search.split('=');
-            id = id[1];
 
-            await getPosts({ id: id }).then(post => {
-                const source = document.getElementById('post-template').innerHTML;
-                const template = Handlebars.compile(source);
-                const html = template(post);
+            if (window.location.search) {
+                let id = window.location.search.split('=');
+                id = id[1];
 
-                document.getElementById('container-posts').innerHTML = html;
+                await getPosts({ id: id }).then(post => {
+                    const source = document.getElementById('post-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template(post);
 
-                document.getElementById('container-title').innerText = post.title;
-            });
+                    document.getElementById('container-post').innerHTML = html;
+
+                    document.getElementById('container-title').innerText = post.title;
+                });
+            } else {
+                await getPosts().then(posts => {
+                    const source = document.getElementById('posts-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template({ posts: posts });
+
+                    document.getElementById('container-posts').innerHTML = html;
+                    document.getElementById('title-posts').innerText = 'Notícias';
+                });
+            }
             break;
 
         case '/new-post.html':
@@ -79,20 +112,31 @@ async function init() {
 
             if (!validAccount()) {
                 document.querySelector('main.container').innerHTML = '<center>Você não tem permissão para acessar esta página.</center>';
+            } else {
+                if (page === '/new-post.html' && window.location.search) {
+                    let id = window.location.search.split('=');
+                    id = id[1];
+
+                    await getPosts({ id: id }).then(post => {
+                        document.querySelector('.btn-default--post').setAttribute('data-id', post.id);
+                        document.querySelector('.post__input').value = post.title;
+                        document.querySelector('.post__textarea').value = post.post;
+
+                        console.log(post);
+                    });
+                }
+
+                if (page === '/publications.html') {
+                    await getPosts().then(posts => {
+
+                        const source = document.getElementById('posts-template').innerHTML;
+                        const template = Handlebars.compile(source);
+                        const html = template({ posts: posts });
+
+                        document.getElementById('container-posts').innerHTML = html;
+                    });
+                }
             }
-
-            if (page === '/publications.html') {
-                await getPosts().then(posts => {
-
-                    const source = document.getElementById('posts-template').innerHTML;
-                    const template = Handlebars.compile(source);
-                    const html = template({ posts: posts });
-
-                    document.getElementById('container-posts').innerHTML = html;
-                });
-            }
-
-
             break;
         default:
             break;
@@ -187,17 +231,10 @@ function addTab(title, name, close = false) {
 
 function validAccount() {
     const email = window.localStorage.getItem('user');
+    const uid = window.localStorage.getItem('uid');
 
-    if (email) {
-
-        if (
-            email === 'faculdade@gabrieldeveloper.com'
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-
+    if (email && uid) {
+        return true;
     } else {
         return false;
     }
@@ -264,7 +301,7 @@ function getPosts(args) {
         }
 
         if (args.limit) {
-            return db.ref('/posts').limitToFirst(args.limit).once('value').then(snapshot => {
+            return db.ref('/posts').orderByChild('id').limitToLast(args.limit).once('value').then(snapshot => {
                 return snapshot.val();
             });
         }
