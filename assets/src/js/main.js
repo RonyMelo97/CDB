@@ -1,4 +1,5 @@
 import Firebase from './firebase.js';
+import Toaster from './toaster.js';
 
 // Connection
 const config = {
@@ -13,13 +14,7 @@ const config = {
 };
 
 const fb = new Firebase(config);
-
-// fetch('https://cannabisdb-4843e.firebaseio.com/posts?auth=' + config.apiKey + '').then(function(data) {
-//     return data.json();
-// }).then(function(data) {
-//     console.log(data)
-// })
-
+const toast = new Toaster();
 // Elements
 
 const els = {
@@ -47,16 +42,63 @@ window.onload = () => {
 };
 
 
-function init() {
+async function init() {
+    const page = window.location.pathname;
 
-    getPosts({ limit: 4 }).then(posts => {
+    switch (page) {
+        case '/':
+        case '/index.html':
+            await getPosts().then(posts => {
 
-        const source = document.getElementById('last-posts-template').innerHTML;
-        const template = Handlebars.compile(source);
-        const html = template({ posts: posts });
+                const source = document.getElementById('posts-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template({ posts: posts });
 
-        document.getElementById('container-cards').innerHTML = html;
-    });
+                document.getElementById('container-cards').innerHTML = html;
+            });
+            break;
+
+        case '/post.html':
+            let id = window.location.search.split('=');
+            id = id[1];
+
+            await getPosts({ id: id }).then(post => {
+                const source = document.getElementById('post-template').innerHTML;
+                const template = Handlebars.compile(source);
+                const html = template(post);
+
+                document.getElementById('container-posts').innerHTML = html;
+
+                document.getElementById('container-title').innerText = post.title;
+            });
+            break;
+
+        case '/new-post.html':
+        case '/publications.html':
+        case '/home-system.html':
+
+            if (!validAccount()) {
+                document.querySelector('main.container').innerHTML = '<center>Você não tem permissão para acessar esta página.</center>';
+            }
+
+            if (page === '/publications.html') {
+                await getPosts().then(posts => {
+
+                    const source = document.getElementById('posts-template').innerHTML;
+                    const template = Handlebars.compile(source);
+                    const html = template({ posts: posts });
+
+                    document.getElementById('container-posts').innerHTML = html;
+                });
+            }
+
+
+            break;
+        default:
+            break;
+    }
+
+    document.querySelector('.preload').classList.add('loaded');
 
 }
 
@@ -143,6 +185,24 @@ function addTab(title, name, close = false) {
     }
 }
 
+function validAccount() {
+    const email = window.localStorage.getItem('user');
+
+    if (email) {
+
+        if (
+            email === 'faculdade@gabrieldeveloper.com'
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+
+    } else {
+        return false;
+    }
+}
+
 // Login Form
 if (els.forms.login) {
     els.forms.login.addEventListener('submit', function(ev) {
@@ -152,7 +212,7 @@ if (els.forms.login) {
         const password = this.querySelector('input[name="password"]').value;
 
         if (email == '' || password == '') {
-            alert('Preencha todos os campos');
+            toast.show('error', 'Preencha todos os campos');
         } else {
             fb.user.login(email, password);
         }
@@ -170,7 +230,7 @@ if (els.forms.register) {
         const confirmPassword = this.querySelector('input[name="confirm-password"]').value;
 
         if (name == '' && email == '' && password == '' && confirmPassword == '') {
-            alert('Preencha todos os campos');
+            toast.show('error', 'Preencha todos os campos');
         } else {
             fb.user.register(email, password);
         }

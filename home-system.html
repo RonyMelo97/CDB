@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +19,14 @@
         <title>CannabisDB - Banco de dados de informações sobre a Cannabis</title>
     </head>
 </head>
+
 <body>
+    <div class="preload">
+        <div class="content">
+            <img src="/assets/img/load.png">
+            <h2>Cannabis Database</h2>
+        </div>
+    </div>
     <header class="header header--system">
         <nav class="header__nav container">
             <div class="logo">
@@ -34,17 +43,17 @@
                 </label>
             </div>
             <div class="header__list">
-                <div  class="header__items header__order-items2">
+                <div class="header__items header__order-items2">
                     <a class="header__link-btn header__link-btn--system" href="index.html">
-                        <div class="btn-default header__btn-default--exit">Sair</div>
+                        <!-- <div class="btn-default header__btn-default--exit">Sair</div> -->
                         <div class="btn-default header__btn-default--register header__btn-default--system">Crie a sua conta</div>
                     </a>
                 </div>
 
-                <div class="header__items header__items--hover">
+                <!--                 <div class="header__items header__items--hover">
                     <a href="#" class="header__link header__link--theme">
                         <i class="fas fa-brush"></i>
-                        <p>Funcionalidades</p> 
+                        <p>Funcionalidades</p>
                         <span class="fas fa-chevron-down header__arrow-down header__arrow-down--system"></span>
                     </a>
                     <div class="header__list--submenu header__list--system">
@@ -61,19 +70,19 @@
                             <p class="header__link ">Funcionalidade</p>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="header__items header__items--hover"> 
-                    <a href="#" class="header__link header__link--about-us header__link--anchor">
+                <div class="header__items header__items--hover">
+                    <a href="/" class="header__link header__link--about-us header__link--anchor">
                         <i class="fas fa-users"></i>
-                        <p>Blog</p> 
+                        <p>Blog</p>
                     </a>
                 </div>
-        </nav>   
+        </nav>
     </header>
-    <article class="about-us container">
+    <main class="container container--publications">
         <div class="cards">
-            <h2 class="title title--cards">
+            <!--             <h2 class="title title--cards">
                 Métricas 
                 <hr class="title--cards__line-title">
             </h2>
@@ -90,22 +99,26 @@
                 <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
                     <div class="cards__preview-text"><p></p></div>
                 </a>
-            </div> 
+            </div>  -->
             <h2 class="title title--cards">
                 Funcionalidades
                 <hr class="title--cards__line-title">
             </h2>
             <div class="container container--cards">
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
-                    <div class="cards__preview-text"><p>Publicar</p></div>
+                <a href="new-post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide1.jpg);">
+                    <div class="cards__preview-text">
+                        <p>Criar Notícia</p>
+                    </div>
                 </a>
-                <a href="post.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide2.jpg);">
-                    <div class="cards__preview-text"><p>Publicações</p></div>
+                <a href="publications.html" class="cards__box-card dark-bg" style="background-image: url(/assets/img/slide2.jpg);">
+                    <div class="cards__preview-text">
+                        <p>Postagens</p>
+                    </div>
                 </a>
-            </div>   
+            </div>
         </div>
-    </article>
-    <footer class="footer ">
+    </main>
+    <footer class="footer">
         <div class="footer__copyright">
             <p>CDB 2020. Todos os direitos reservados.</p>
         </div>
@@ -114,12 +127,15 @@
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js"></script>
-    
-    <!---   -->
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script type="module" src="./assets/dist/js/main.js"></script>
-    
+
 </body>
+
 </html>

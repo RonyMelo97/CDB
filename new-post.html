@@ -80,28 +80,7 @@
                 </div>
         </nav>
     </header>
-    <main class="container container--publications">
-
-        <div class="publications">
-            <h1 class="title">Publicaçoes</h1>
-            <div id="container-posts"></div>
-            <!--             <div class="page-number">
-                <div class="page-number__box">
-                    <p class="text text--number"><i class="fas fa-chevron-left"></i></p>
-                    <p class="text text--number"><span>|</span> 1 <span>|</span></p>
-                    <p class="text text--number">2 |</p>
-                    <p class="text text--number">3 |</p>
-                    <p class="text text--number">4 |</p>
-                    <p class="text text--number">5 |</p>
-                    <p class="text text--number">6 |</p>
-                    <p class="text text--number">7 |</p>
-                    <p class="text text--number">8 |</p>
-                    <p class="text text--number">9 |</p>
-                    <p class="text text--number"><i class="fas fa-chevron-right"></i></p>
-                </div>
-            </div> -->
-        </div>
-    </main>
+    <main class="container container--publications"></main>
     <footer class="footer">
         <div class="footer__copyright">
             <p>CDB 2020. Todos os direitos reservados.</p>
@@ -118,76 +97,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-
     <script type="module" src="./assets/dist/js/main.js"></script>
 
-
-    <script id="posts-template" type="text/x-handlebars-template">
-        {{#each posts}}
-        <div class="crud">
-            <div class="crud__title">
-                <p class="text crud__text">{{ this.title }}</p>
-            </div>
-            <div class="crud__function">
-                <a href="new-post.html?post={{this.id}}" class="crud__box-edit">
-                    <i class="fas fa-edit"></i>
-                    <p class="text text--function crud__text">Editar</p>
-                </a>
-                <a href="#" onClick="reqDel({{this.id}})" class="crud__box-trash">
-                    <i class="fas fa-trash"></i>
-                    <p class="text text--function crud__text">Excluir</p>
-                </a>
-            </div>
-        </div>
-        {{/each}}
-    </script>
-
-    <script>
-        const config = {
-            apiKey: "AIzaSyCljnwFf_YOnEflIaBhS_n9nP1nf3cft4o",
-            authDomain: "cannabisdb-4843e.firebaseapp.com",
-            databaseURL: "https://cannabisdb-4843e.firebaseio.com",
-            projectId: "cannabisdb-4843e",
-            storageBucket: "cannabisdb-4843e.appspot.com",
-            messagingSenderId: "723480522711",
-            appId: "1:723480522711:web:b061ccfd9ca88446b32592",
-            measurementId: "G-5RF95DX7F1"
-        };
-        firebase.initializeApp(config);
-
-        let db;
-        if (typeof firebase.database === 'function') {
-            db = firebase.database();
-        } else {
-            throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
-        }
-
-        function validAccount() {
-            const email = window.localStorage.getItem('user');
-
-            if (email) {
-
-                if (
-                    email === 'faculdade@gabrieldeveloper.com'
-                ) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            } else {
-                return false;
-            }
-        }
-
-        function reqDel(id) {
-            if (validAccount()) {
-                if (confirm('Você realmente deseja excluir essa publicação?')) {
-                    db.ref(`/posts/${id}`).remove();
-                }
-            }
-        }
-    </script>
 </body>
 
 </html>

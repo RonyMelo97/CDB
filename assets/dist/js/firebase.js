@@ -3,7 +3,9 @@ import Ajax from './ajax.js';
 
 export default function Firebase(config) {
 
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
 
     function handleError(code) {
         let message;
@@ -60,10 +62,10 @@ export default function Firebase(config) {
         login: (email, password) => {
             firebase.auth().signInWithEmailAndPassword(email, password).then(data => {
 
+                window.localStorage.setItem('user', data.user.email);
                 toast.show('success', 'Usuário logado com sucesso!');
 
             }).catch(function(error) {
-
                 toast.show('error', handleError(error.code));
 
             })
