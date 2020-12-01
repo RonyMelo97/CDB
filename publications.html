@@ -133,7 +133,7 @@
                     <i class="fas fa-edit"></i>
                     <p class="text text--function crud__text">Editar</p>
                 </a>
-                <a href="#" onClick="delPost({{this.id}})" class="crud__box-trash">
+                <a href="#" onClick="reqDel({{this.id}})" class="crud__box-trash">
                     <i class="fas fa-trash"></i>
                     <p class="text text--function crud__text">Excluir</p>
                 </a>
@@ -162,8 +162,30 @@
             throw new Error('O arquivo para conexão com o banco não foi encontrado ou está corrompido.');
         }
 
-        function delPost(id) {
-            db.ref(`/posts/${id}`).remove();
+        function validAccount() {
+            const email = window.localStorage.getItem('user');
+
+            if (email) {
+
+                if (
+                    email === 'faculdade@gabrieldeveloper.com'
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+                return false;
+            }
+        }
+
+        function reqDel(id) {
+            if (validAccount()) {
+                if (confirm('Você realmente deseja excluir essa publicação?')) {
+                    db.ref(`/posts/${id}`).remove();
+                }
+            }
         }
     </script>
 </body>
