@@ -2,6 +2,7 @@
     display: flex;
     margin-top: 50px;
     flex-direction: column;
+    justify-content: center;
     .publications {
         display: flex;
         align-items: center;
@@ -32,6 +33,28 @@
         }
         &__text {
             color: $color-txt-publication;
+            
+            @media only screen and(max-width: 1080px) {
+                max-width: 40ch;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            @media only screen and(max-width: 925px){
+                max-width: 300px;
+            }
+            @media only screen and(max-width: 800px){
+                max-width: 250px;
+            }
+            @media only screen and(max-width: 600px){
+                max-width: 200px;
+            }
+            @media only screen and(max-width: 500px){
+                max-width: 150px;
+            }
+            @media only screen and(max-width: 400px){
+                max-width: 130px;
+            }
         }
         &__function {
             display: flex;
