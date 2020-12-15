@@ -204,13 +204,19 @@
     </script>
 
     <script id="posts-template" type="text/x-handlebars-template">
-        {{#each posts}}
+        {{#each posts}} {{#if this.image}}
+        <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url({{this.image}});">
+            <div class="cards__preview-text">
+                <p>{{this.title}}</p>
+            </div>
+        </a>
+        {{else}}
         <a href="post.html?post={{this.id}}" class="cards__box-card dark-bg" style="background-image: url(./assets/img/slide1.jpg);">
             <div class="cards__preview-text">
                 <p>{{this.title}}</p>
             </div>
         </a>
-        {{/each}}
+        {{/if}} {{/each}}
     </script>
 
 </body>

@@ -1,3 +1,4 @@
+@import './utils/variables';
 .container--post {
     display: flex;
     margin-top: 50px;
@@ -36,6 +37,24 @@
                 background-color: #FFF;
                 box-shadow: 0 5px 6px 0 rgba(47, 50, 50, .3);
                 resize: vertical;
+            }
+            &__image {
+                margin-bottom: 25px;
+                &__container {
+                    width: 300px;
+                    height: 300px;
+                    box-shadow: 0 5px 6px 0 rgba(47, 50, 50, .3);
+                    background-color: $color-footer-bg;
+                    background-size: cover;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 15px;
+                    cursor: pointer;
+                }
+                &__input {
+                    transform: scale(0);
+                }
             }
         }
         .box-Btn--post {

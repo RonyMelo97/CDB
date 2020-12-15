@@ -82,8 +82,14 @@
     </header>
     <main class="container container--post">
         <form class="form__post">
+            <div class="post__image">
+                <div class="post__image__container">
+                    Clique para inserir a imagem
+                </div>
+                <input type="file" class="post__image__input" accept="image/*" onchange="handleImage(this)" />
+            </div>
             <div class="post">
-                <input class="post__input text" placeholder="Digite o titulo do notícia" />
+                <input class="post__input text" placeholder="Digite o titulo da notícia" />
             </div>
             <div style="width: 50%">
                 <textarea class="post__textarea" placeholder="Digite o conteúdo da notícia"></textarea>
@@ -165,17 +171,22 @@
             }
         }
 
-        function savePost(id, title, post) {
+        function savePost(id, title, post, img) {
             const postData = {
                 id: id,
                 title: title,
-                post: post
+                post: post,
+                image: img
             };
 
             const updates = {};
             updates['/posts/' + id] = postData;
 
             toastr['success']('Notícia salva com sucesso');
+
+            if (window.sessionStorage.getItem('image-post')) {
+                window.sessionStorage.removeItem('image-post');
+            }
 
             setTimeout(function() {
                 window.location.href = 'publications.html';
@@ -190,6 +201,7 @@
 
             const title = document.querySelector('.post__input').value;
             const post = document.querySelector('.post__textarea').value;
+            const image = window.sessionStorage.getItem('image-post');
 
             if (title === null || title === '' || post === null || post === '') {
 
@@ -197,18 +209,38 @@
             } else {
 
                 if (document.querySelector('.btn-default--post').dataset.id) {
-                    savePost(document.querySelector('.btn-default--post').dataset.id, title, post);
+                    savePost(document.querySelector('.btn-default--post').dataset.id, title, post, image);
 
                 } else {
 
                     db.ref('/posts').once('value').then(snapshot => {
-                        savePost(snapshot.val().length, title, post);
+                        savePost(snapshot.val().length, title, post, image);
                     })
 
                 }
             }
 
         })
+
+        const imageContainer = document.querySelector('.post__image__container');
+
+        imageContainer.addEventListener('click', () => {
+            document.querySelector('.post__image__input').click();
+        })
+
+        function handleImage(el) {
+            const file = el.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                imageContainer.style.backgroundImage = `url(${reader.result})`;
+                imageContainer.style.color = 'transparent';
+
+                window.sessionStorage.setItem('image-post', reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 
