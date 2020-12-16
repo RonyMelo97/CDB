@@ -70,6 +70,7 @@ async function init() {
         case '/':
         case '/index.html':
             await getPosts({ limit: 4 }).then(posts => {
+                posts = posts;
 
                 const source = document.getElementById('posts-template').innerHTML;
                 const template = Handlebars.compile(source);
@@ -93,6 +94,10 @@ async function init() {
                     document.getElementById('container-post').innerHTML = html;
 
                     document.getElementById('container-title').innerText = post.title;
+
+                    if (post.image) {
+                        document.querySelector('.slick-current').style.backgroundImage = `url(${post.image})`;
+                    }
                 });
             } else {
                 await getPosts().then(posts => {
@@ -121,8 +126,11 @@ async function init() {
                         document.querySelector('.btn-default--post').setAttribute('data-id', post.id);
                         document.querySelector('.post__input').value = post.title;
                         document.querySelector('.post__textarea').value = post.post;
+                        document.querySelector('.post__image__container').style.backgroundImage = `url(${post.image})`;
+                        document.querySelector('.post__image__container').style.color = 'transparent';
 
-                        console.log(post);
+
+                        window.sessionStorage.setItem('image-post', post.image);
                     });
                 }
 
@@ -289,7 +297,7 @@ function getPosts(args) {
 
     if (!args) {
         return db.ref('/posts').once('value').then(snapshot => {
-            return snapshot.val();
+            return snapshot.val().reverse();
         })
     }
 
@@ -301,7 +309,7 @@ function getPosts(args) {
         }
 
         if (args.limit) {
-            return db.ref('/posts').orderByChild('id').limitToLast(args.limit).once('value').then(snapshot => {
+            return db.ref('/posts').limitToLast(args.limit).once('value').then(snapshot => {
                 return snapshot.val();
             });
         }
